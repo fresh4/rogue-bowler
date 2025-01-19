@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cu4nerdr6gtdq"]
 
 [ext_resource type="Texture2D" uid="uid://b7bg1y3kbc254" path="res://Assets/texture_08.png" id="1_uawbj"]
-[ext_resource type="Script" path="res://Scripts/ball_controller.gd" id="2_gxivv"]
+[ext_resource type="Script" path="res://Scripts/player_controller.gd" id="2_gxivv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhxao"]
 albedo_texture = ExtResource("1_uawbj")

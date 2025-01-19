@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn10afwxhar2c"]
+[gd_scene load_steps=11 format=3 uid="uid://bn10afwxhar2c"]
 
 [ext_resource type="Texture2D" uid="uid://4jjje01bllco" path="res://Assets/texture_06.png" id="1_580bi"]
+[ext_resource type="Script" path="res://Scenes/level_manager.gd" id="1_sttxf"]
 [ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
 [ext_resource type="PackedScene" uid="uid://d0y8f0wlh3x2i" path="res://Prefabs/pin.tscn" id="3_d8a7j"]
 
@@ -29,6 +30,7 @@ size = Vector2(1000, 1000)
 points = PackedVector3Array(-500, 0, -500, -500, 0, 500, 500, 0, -500, 500, 0, 500)
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_sttxf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mnx18")
@@ -38,6 +40,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="."]
+collision_mask = 7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 material_override = SubResource("StandardMaterial3D_tl3w3")
@@ -55,79 +58,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9389, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0)
 
 [node name="Pin2" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259266, 0, 0.8)
 
 [node name="Pin3" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, -0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259266, 0, -0.8)
 
 [node name="Pin4" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, 0)
 
 [node name="Pin5" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, 0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, 0.8)
 
 [node name="Pin6" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, -0.4)
-
-[node name="Pins4" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.2751, 0, 0)
-
-[node name="Pin" parent="Pins4" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0)
-
-[node name="Pin2" parent="Pins4" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0.4)
-
-[node name="Pin3" parent="Pins4" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, -0.4)
-
-[node name="Pin4" parent="Pins4" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, 0)
-
-[node name="Pin5" parent="Pins4" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, 0.4)
-
-[node name="Pin6" parent="Pins4" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, -0.4)
-
-[node name="Pins2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.8999, 0, 5.79558)
-
-[node name="Pin" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0)
-
-[node name="Pin2" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0.4)
-
-[node name="Pin3" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, -0.4)
-
-[node name="Pin4" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, 0)
-
-[node name="Pin5" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, 0.4)
-
-[node name="Pin6" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, -0.4)
-
-[node name="Pins3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4645, 0, -6.36356)
-
-[node name="Pin" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0)
-
-[node name="Pin2" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0.4)
-
-[node name="Pin3" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, -0.4)
-
-[node name="Pin4" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, 0)
-
-[node name="Pin5" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, 0.4)
-
-[node name="Pin6" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.258759, 0, -0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, -0.8)
