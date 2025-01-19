@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0y8f0wlh3x2i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8q0os"]
+size = Vector3(0.25, 2, 0.25)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kk5cp"]
+points = PackedVector3Array(-0.125, -1, -0.125, -0.125, -1, 0.125, -0.125, 1, -0.125, 0.125, -1, -0.125, 0.125, -1, 0.125, -0.125, 1, 0.125, 0.125, 1, -0.125, 0.125, 1, 0.125)
+
+[node name="Pin" type="RigidBody3D"]
+can_sleep = false
+freeze_mode = 1
+continuous_cd = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_8q0os")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("ConvexPolygonShape3D_kk5cp")
