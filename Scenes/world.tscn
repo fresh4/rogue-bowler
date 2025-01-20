@@ -1,11 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn10afwxhar2c"]
+[gd_scene load_steps=15 format=3 uid="uid://bn10afwxhar2c"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_sttxf"]
-[ext_resource type="Texture2D" uid="uid://ogadkc1xnysq" path="res://Assets/vaporwave-grid.png" id="2_b5530"]
 [ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
+[ext_resource type="Material" uid="uid://7w4rtfxiawa4" path="res://Assets/floor_grid.tres" id="2_vbdb3"]
 [ext_resource type="PackedScene" uid="uid://d0y8f0wlh3x2i" path="res://Prefabs/pin.tscn" id="3_d8a7j"]
 [ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="5_2gcxh"]
-[ext_resource type="FontFile" uid="uid://cr0tpvb38ppxp" path="res://Assets/Rocket Rinder.otf" id="6_vp3hc"]
+[ext_resource type="FontFile" uid="uid://cr0tpvb38ppxp" path="res://Assets/Fonts/Rocket Rinder.otf" id="6_vp3hc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x6owf"]
 sky_top_color = Color(0.0627451, 0.027451, 0.129412, 1)
@@ -23,17 +23,8 @@ glow_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.129412, 0, 0.172549, 1)
 fog_density = 0.04
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t527y"]
-transparency = 1
-blend_mode = 1
-albedo_texture = ExtResource("2_b5530")
-emission_enabled = true
-emission = Color(0.556689, 0.265198, 0.617188, 1)
-emission_energy_multiplier = 3.0
-uv1_scale = Vector3(0.25, 0.25, 0.25)
-uv1_triplanar = true
-texture_filter = 5
+adjustment_enabled = true
+adjustment_saturation = 1.25
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j40xo"]
 size = Vector2(1000, 1000)
@@ -77,7 +68,7 @@ shadow_enabled = true
 collision_mask = 7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-material_override = SubResource("StandardMaterial3D_t527y")
+material_override = ExtResource("2_vbdb3")
 mesh = SubResource("PlaneMesh_j40xo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]

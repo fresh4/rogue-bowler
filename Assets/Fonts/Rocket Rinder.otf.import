@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cr0tpvb38ppxp"
-path="res://.godot/imported/Rocket Rinder.otf-321d14bbf226fc445d1b295d574bdd75.fontdata"
+path="res://.godot/imported/Rocket Rinder.otf-1cfee159e61ee3446f552acaf5410baa.fontdata"
 
 [deps]
 
-source_file="res://Assets/Rocket Rinder.otf"
-dest_files=["res://.godot/imported/Rocket Rinder.otf-321d14bbf226fc445d1b295d574bdd75.fontdata"]
+source_file="res://Assets/Fonts/Rocket Rinder.otf"
+dest_files=["res://.godot/imported/Rocket Rinder.otf-1cfee159e61ee3446f552acaf5410baa.fontdata"]
 
 [params]
 

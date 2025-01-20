@@ -52,9 +52,11 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 		await timer.timeout;
 		score += len(combo_pins);
 		score_updated.emit(score);
-		combo_updated.emit(0);
 		
 		combo_pins = [];
+		await get_tree().create_timer(2).timeout;
+		if len(combo_pins) == 0:
+			combo_updated.emit(0);
 	else: 
 		return;
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7bg1y3kbc254"
-path.s3tc="res://.godot/imported/texture_08.png-0a3fc4471b6366701ff3da48ae1822cb.s3tc.ctex"
+uid="uid://ogadkc1xnysq"
+path.s3tc="res://.godot/imported/vaporwave-grid.png-c3d4192ad3113185680e6f1573ceb373.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/texture_08.png"
-dest_files=["res://.godot/imported/texture_08.png-0a3fc4471b6366701ff3da48ae1822cb.s3tc.ctex"]
+source_file="res://Assets/Textures/vaporwave-grid.png"
+dest_files=["res://.godot/imported/vaporwave-grid.png-c3d4192ad3113185680e6f1573ceb373.s3tc.ctex"]
 
 [params]
 

@@ -23,6 +23,16 @@ Globals="*res://Scripts/Autoloads/globals.gd"
 
 window/stretch/mode="canvas_items"
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Audio/": "orange",
+"res://Prefabs/": "yellow",
+"res://Scenes/": "pink",
+"res://Scripts/": "green"
+}
+
 [global_group]
 
 Pins=""
