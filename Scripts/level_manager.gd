@@ -44,7 +44,7 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 	
 	if body.is_knocked: return;
 	
-	Globals.freeze_frame(0.25, 0.1);
+	Globals.freeze_frame(0.35, 0.5);
 	
 	if timer.is_stopped(): 
 		timer.start();

@@ -8,8 +8,10 @@
 [ext_resource type="FontFile" uid="uid://cr0tpvb38ppxp" path="res://Assets/Rocket Rinder.otf" id="6_vp3hc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x6owf"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.0627451, 0.027451, 0.129412, 1)
+sky_horizon_color = Color(0.858824, 0.00392157, 0.447059, 1)
+ground_bottom_color = Color(0.113725, 0, 0.168627, 1)
+ground_horizon_color = Color(0.847059, 0, 0.509804, 1)
 
 [sub_resource type="Sky" id="Sky_vsnrb"]
 sky_material = SubResource("ProceduralSkyMaterial_x6owf")
@@ -17,8 +19,9 @@ sky_material = SubResource("ProceduralSkyMaterial_x6owf")
 [sub_resource type="Environment" id="Environment_mnx18"]
 background_mode = 2
 sky = SubResource("Sky_vsnrb")
-tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.129412, 0, 0.172549, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tl3w3"]
 albedo_texture = ExtResource("1_580bi")
@@ -59,6 +62,7 @@ environment = SubResource("Environment_mnx18")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_color = Color(0.984131, 0.84375, 1, 1)
 light_energy = 0.1
 shadow_enabled = true
 
