@@ -3,7 +3,7 @@ class_name Player extends Node3D
 @export var camera_rotation_speed: float = 0.01;
 @export var invert_camera_rotation: bool = false;
 
-@onready var camera: Camera3D = %Camera;
+@onready var camera: CustomCamera = %Camera;
 @onready var ball: RigidBody3D = %Ball;
 @onready var camera_pivot: Node3D = %CameraPivot
 

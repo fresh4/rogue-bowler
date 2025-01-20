@@ -23,7 +23,7 @@ var combo_pins: Array[Pin] = [];
 var timer: Timer = Timer.new();
 
 var ball: RigidBody3D = null;
-var camera: Camera3D = null;
+var camera: CustomCamera = null;
 
 func _ready() -> void:
 	ball = player.get_node("%Ball");
@@ -46,7 +46,12 @@ func _ready() -> void:
 func _on_ball_hit_pins(body: Node3D) -> void:
 	if not body is Pin: return;
 	body = body as Pin;
+	
+	camera._camera_shake(0.1, 0.1);
+	
 	if body.is_knocked: return;
+	
+	Globals.freeze_frame(0.25, 0.1);
 	
 	if timer.is_stopped(): 
 		timer.start();
