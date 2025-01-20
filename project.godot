@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Globals="*res://Scripts/Autoloads/globals.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 Pins=""
@@ -65,3 +69,8 @@ rotate_camera={
 3d_physics/layer_1="Floor"
 3d_physics/layer_2="Ball"
 3d_physics/layer_3="Pins"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

@@ -1,12 +1,5 @@
 class_name LevelManager extends Node3D
 
-# TODO:
-# Have a score tracker
-# Track pins in the level on startup
-# Track knocked down pins
-# On hit, start a timer; any pins knocked over in that time are counted to a combo
-# 10+ combo = strike, etc.
-
 signal score_updated(score);
 signal timer_started(time);
 signal combo_updated(value);
@@ -59,6 +52,7 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 		await timer.timeout;
 		score += len(combo_pins);
 		score_updated.emit(score);
+		combo_updated.emit(0);
 		
 		combo_pins = [];
 	else: 

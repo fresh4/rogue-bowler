@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bn10afwxhar2c"]
+[gd_scene load_steps=16 format=3 uid="uid://bn10afwxhar2c"]
 
 [ext_resource type="Texture2D" uid="uid://4jjje01bllco" path="res://Assets/texture_06.png" id="1_580bi"]
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_sttxf"]
 [ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
 [ext_resource type="PackedScene" uid="uid://d0y8f0wlh3x2i" path="res://Prefabs/pin.tscn" id="3_d8a7j"]
-[ext_resource type="Script" path="res://Scenes/ui_manager.gd" id="5_2gcxh"]
+[ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="5_2gcxh"]
+[ext_resource type="FontFile" uid="uid://cr0tpvb38ppxp" path="res://Assets/Rocket Rinder.otf" id="6_vp3hc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x6owf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,8 +31,24 @@ size = Vector2(1000, 1000)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_70m37"]
 points = PackedVector3Array(-500, 0, -500, -500, 0, 500, 500, 0, -500, 500, 0, 500)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_px2rk"]
-size = Vector2(0, 0)
+[sub_resource type="Theme" id="Theme_vgjns"]
+Label/colors/font_shadow_color = Color(0.701961, 0.254902, 0.827451, 1)
+Label/fonts/font = ExtResource("6_vp3hc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pic8n"]
+bg_color = Color(0.702, 0.255, 0.827, 0.184)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnylh"]
+bg_color = Color(0.702875, 0.255554, 0.828125, 1)
+skew = Vector2(0.3, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="World" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_sttxf")
@@ -42,6 +59,7 @@ environment = SubResource("Environment_mnx18")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.1
 shadow_enabled = true
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -87,6 +105,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_vgjns")
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
@@ -132,7 +151,7 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "STRIKE"
 
-[node name="TimerSlider" type="HSlider" parent="UI"]
+[node name="TimerSlider" type="ProgressBar" parent="UI"]
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_top = 0.16
@@ -141,8 +160,10 @@ anchor_bottom = 0.21
 offset_left = 24.0
 offset_top = 8.31999
 offset_right = -23.616
-offset_bottom = -8.08
+offset_bottom = -16.08
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_icons/grabber_disabled = SubResource("PlaceholderTexture2D_px2rk")
-editable = false
+theme_override_styles/background = SubResource("StyleBoxFlat_pic8n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dnylh")
+value = 17.4
+show_percentage = false

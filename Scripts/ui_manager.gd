@@ -2,12 +2,12 @@ extends CanvasLayer
 
 @onready var score_value: Label = %ScoreValue
 @onready var combo_value: Label = %ComboValue
-@onready var timer_slider: HSlider = %TimerSlider
+@onready var timer_slider: ProgressBar = %TimerSlider
 
 var level_manager: LevelManager = null;
 var timer_length: float = 0;
 
-var combo_arr = ["Bang", "Double", "Triple", "Quad!", "Penta!", "SEXTUPLE!", "SEPTOUPLE!", "OCTOUPLE!", "NINER!", "STRIKE!!!"];
+var combo_arr = ["Hit Something!", "Single", "Double", "Triple", "Quad!", "Penta!", "SEXTUPLE!", "SEPTOUPLE!", "OCTOUPLE!", "NINER!", "STRIKE!!!"];
 
 func _ready() -> void:
 	level_manager = get_parent();
@@ -17,14 +17,14 @@ func _ready() -> void:
 	level_manager.timer_started.connect(start_timer_bar);
 	
 	score_value.text = str(0);
-	combo_value.text = "";
+	combo_value.text = combo_arr[0];
 	timer_slider.visible = false;
 
 func update_score(score: int) -> void:
 	score_value.text = str(score);
 
 func update_combo(value) -> void:
-	combo_value.text = combo_arr[ clamp( value - 1, 0, len(combo_arr) - 1 ) ];
+	combo_value.text = combo_arr[ clamp( value, 0, len(combo_arr) - 1 ) ];
 
 func start_timer_bar(wait_time: float) -> void:
 	timer_length = wait_time;
