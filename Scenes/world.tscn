@@ -171,3 +171,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_pic8n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dnylh")
 value = 17.4
 show_percentage = false
+
+[node name="Spawner" type="Node3D" parent="."]
