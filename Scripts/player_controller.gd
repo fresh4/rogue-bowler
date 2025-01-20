@@ -1,4 +1,4 @@
-extends Node3D
+class_name Player extends Node3D
 
 @export var camera_rotation_speed: float = 0.01;
 @export var invert_camera_rotation: bool = false;
