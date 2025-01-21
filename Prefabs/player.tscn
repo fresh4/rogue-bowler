@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cu4nerdr6gtdq"]
 
-[ext_resource type="Texture2D" uid="uid://nvs7ln708y8j" path="res://Assets/Ball/ball-body.png" id="2_2d1iq"]
+[ext_resource type="Texture2D" uid="uid://nvs7ln708y8j" path="res://Assets/Models/Ball/ball-body.png" id="2_2d1iq"]
 [ext_resource type="Script" path="res://Scripts/player_controller.gd" id="2_gxivv"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_a87xt"]
-[ext_resource type="ArrayMesh" uid="uid://bibydrkfrsu5" path="res://Assets/Ball/ball.obj" id="3_aa15h"]
-[ext_resource type="Texture2D" uid="uid://rs5knxemaj13" path="res://Assets/Ball/ball-details.png" id="3_fnh4v"]
+[ext_resource type="ArrayMesh" uid="uid://bibydrkfrsu5" path="res://Assets/Models/Ball/ball.obj" id="3_aa15h"]
+[ext_resource type="Texture2D" uid="uid://rs5knxemaj13" path="res://Assets/Models/Ball/ball-details.png" id="3_fnh4v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2hp4"]
 transparency = 1
@@ -64,7 +64,7 @@ transform = Transform3D(1, 0, 0, 0, 0.992546, 0.121869, 0, -0.121869, 0.992546, 
 script = ExtResource("3_a87xt")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.208717, 0)
 light_color = Color(0.923706, 0.0234375, 1, 1)
 light_energy = 2.2
 light_size = 0.25

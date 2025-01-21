@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://d0y8f0wlh3x2i"]
 
-[ext_resource type="Texture2D" uid="uid://nhu151sesqip" path="res://Assets/Pin/bowling-pin.png" id="1_i35lo"]
+[ext_resource type="Texture2D" uid="uid://nhu151sesqip" path="res://Assets/Models/Pin/bowling-pin.png" id="1_i35lo"]
 [ext_resource type="Script" path="res://Scripts/pin.gd" id="1_wc0v7"]
-[ext_resource type="Texture2D" uid="uid://ha6inqe01pys" path="res://Assets/Pin/bowling-pin-stripes.png" id="2_i6gvg"]
-[ext_resource type="ArrayMesh" uid="uid://uiy6vrlynwvw" path="res://Assets/Pin/bowling-pin.obj" id="2_mtnrn"]
+[ext_resource type="Texture2D" uid="uid://ha6inqe01pys" path="res://Assets/Models/Pin/bowling-pin-stripes.png" id="2_i6gvg"]
+[ext_resource type="ArrayMesh" uid="uid://uiy6vrlynwvw" path="res://Assets/Models/Pin/bowling-pin.obj" id="2_mtnrn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wddb1"]
 friction = 0.75

@@ -2,6 +2,7 @@ class_name CustomCamera extends Camera3D
 
 @export var period: float = 0.3;
 @export var magnitude: float = 0.4;
+@export var camera_rotation_speed: float = 0.01;
 
 func _camera_shake(p: float = period, m: float = magnitude):
 	var initial_transform = self.transform ;

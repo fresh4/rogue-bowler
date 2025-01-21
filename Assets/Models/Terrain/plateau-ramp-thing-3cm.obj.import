@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dxxa8xjkuxebi"
+path="res://.godot/imported/plateau-ramp-thing-3cm.obj-604c0b11b3393739e3baab6292536c26.mesh"
+
+[deps]
+
+files=["res://.godot/imported/plateau-ramp-thing-3cm.obj-604c0b11b3393739e3baab6292536c26.mesh"]
+
+source_file="res://Assets/Models/Terrain/plateau-ramp-thing-3cm.obj"
+dest_files=["res://.godot/imported/plateau-ramp-thing-3cm.obj-604c0b11b3393739e3baab6292536c26.mesh", "res://.godot/imported/plateau-ramp-thing-3cm.obj-604c0b11b3393739e3baab6292536c26.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

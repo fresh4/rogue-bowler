@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 [autoload]
 
 Globals="*res://Scripts/Autoloads/globals.gd"
+AudioManager="*res://Scripts/Autoloads/audio_manager.gd"
 
 [display]
 
@@ -30,7 +31,7 @@ enabled=PackedStringArray()
 
 folder_colors={
 "res://Assets/": "red",
-"res://Audio/": "orange",
+"res://Assets/Audio/": "orange",
 "res://Prefabs/": "yellow",
 "res://Scenes/": "pink",
 "res://Scripts/": "green"
@@ -74,6 +75,11 @@ slam={
 rotate_camera={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":4,"position":Vector2(85, 17),"global_position":Vector2(94, 63),"factor":1.0,"button_index":3,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+pause={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 

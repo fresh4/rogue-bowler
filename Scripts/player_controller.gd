@@ -1,30 +1,32 @@
 class_name Player extends Node3D
 
-@export var camera_rotation_speed: float = 0.01;
-@export var invert_camera_rotation: bool = false;
+@export var MAX_SPEED: int = 50; ## Maximum allowed speed (linear or angular).
+@export var ACC_RATE: float = 3.0; ## The rate at which ball will speed up.
+@export var STRAFE_MULTIPLIER: float = 2.5; ## Speed multiplier for left/right movement.
+@export var BASE_FOV: float = 75.0; ## Default camera FOV.
+@export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
 
 @onready var camera: CustomCamera = %Camera;
 @onready var ball: RigidBody3D = %Ball;
 @onready var camera_pivot: Node3D = %CameraPivot
 
-const MAX_SPEED: int = 50; ## Maximum allowed speed (linear or angular).
-const ACC_RATE: float = 3.0; ## The rate at which ball will speed up.
-const STRAFE_MULTIPLIER: float = 2.0; ## Speed multiplier for left/right movement.
-const BASE_FOV: float = 75.0; ## Default camera FOV.
-const MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
-
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
 var default_camera_orientation: Vector3;
+var last_frames_veloctiy: Vector3 = Vector3.ZERO;
 
 func _ready() -> void:
 	camera.fov = BASE_FOV;
 	default_camera_orientation = camera_pivot.rotation;
+	ball.body_entered.connect(_on_hit_ground);
 
 func _process(_delta: float) -> void:
 	# Reset camera's (parent) position to follow ball.
 	camera_pivot.global_position = ball.global_position;
 
 func _physics_process(_delta: float) -> void:
+	# Store the previous frame's velocity for calulating velocity on impacts.
+	last_frames_veloctiy = ball.linear_velocity;
+	
 	# Set "forward" to be direction camera is facing.
 	forward = camera.global_transform.basis.z.normalized().cross(Vector3.UP);
 	
@@ -45,8 +47,8 @@ func _input(event: InputEvent) -> void:
 			reset_camera();
 	# Rotate the camera if key is held and mouse is in motion.
 	if event is InputEventMouseMotion and Input.is_action_pressed("rotate_camera"):
-		var is_invert = 1 if invert_camera_rotation else -1;
-		camera_pivot.rotate(Vector3(0,1,0), is_invert * event.relative.x * 0.01);
+		var invert = 1 if Globals.is_look_inverted else -1;
+		camera_pivot.rotate(Vector3(0,1,0), invert * event.relative.x * camera.camera_rotation_speed);
 
 func move(dir) -> void:
 	# Push the ball by applying torque along a direction at a passed in rate.
@@ -75,3 +77,8 @@ func handle_input() -> void:
 func reset_camera() -> void:
 	var tween = get_tree().create_tween();
 	tween.tween_property(camera_pivot, "rotation", default_camera_orientation, 0.15);
+
+func _on_hit_ground(body: Node3D) -> void:
+	if body is not GridMap: return;
+	if last_frames_veloctiy.y < -8:
+		camera._camera_shake(0.25, 0.1);
