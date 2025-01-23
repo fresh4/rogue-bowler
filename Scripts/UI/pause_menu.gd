@@ -17,6 +17,8 @@ func _ready() -> void:
 	
 	music_slider.value = 0.5; # TODO: Get the existing value for the music player
 	sfx_slider.value = 0.5; # TODO: Get the existing value for the sfx player
+	
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
@@ -39,6 +41,7 @@ func _on_sfx_slider_changed(value):
 	AudioManager.set_volume("SFX", value);
 
 func pause() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	is_paused = true;
 	
 	var tween = get_tree().create_tween();
@@ -46,5 +49,6 @@ func pause() -> void:
 	tween.tween_property(bg, "color:a", 0.35, 0.25);
 
 func unpause() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 	is_paused = false;
 	bg.color.a = 0;
