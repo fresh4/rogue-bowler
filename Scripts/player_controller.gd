@@ -16,7 +16,7 @@ class_name Player extends Node3D
 
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
 var default_camera_orientation: Vector3;
-var last_frames_veloctiy: Vector3 = Vector3.ZERO;
+var last_frames_velocity: Vector3 = Vector3.ZERO;
 
 func _ready() -> void:
 	set_emission(COLOR_OPTIONS[0]);
@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	# Store the previous frame's velocity for calulating velocity on impacts.
-	last_frames_veloctiy = ball.linear_velocity;
+	last_frames_velocity = ball.linear_velocity;
 	
 	# Set "forward" to be direction camera is facing.
 	forward = camera.global_transform.basis.z.normalized().cross(Vector3.UP);
@@ -51,7 +51,8 @@ func _input(event: InputEvent) -> void:
 		if not Input.is_action_pressed("rotate_camera"):
 			reset_camera();
 	# Rotate the camera if key is held and mouse is in motion.
-	if event is InputEventMouseMotion and Input.is_action_pressed("rotate_camera"):
+	
+	if event is InputEventMouseMotion: #and Input.is_action_pressed("rotate_camera")
 		var invert = 1 if Globals.is_look_inverted else -1;
 		camera_pivot.rotate(Vector3(0,1,0), invert * event.relative.x * camera.camera_rotation_speed);
 
@@ -91,6 +92,6 @@ func set_emission(color: Color) -> void:
 
 func _on_hit_ground(body: Node3D) -> void:
 	if body is not GridMap: return;
-	if last_frames_veloctiy.y < -8:
-		camera._camera_shake(0.25, 0.1);
-		Globals.freeze_frame(0.4, 0.25);
+	if last_frames_velocity.y < -8:
+		camera._camera_shake(0.2, 0.075);
+		#Globals.freeze_frame(0.4, 0.25);
