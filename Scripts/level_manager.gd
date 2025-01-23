@@ -57,11 +57,12 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 	if not body is Pin: return;
 	body = body as Pin;
 	
-	camera._camera_shake(0.1, 0.1);
+	camera._camera_shake(0.1, ball.linear_velocity.length() * 0.008);
 	
 	if body.is_knocked: return;
 	
 	Globals.freeze_frame(0.35, 0.5);
+	camera._camera_shake(0.1, 0.1);
 	
 	if timer.is_stopped(): 
 		timer.start();
