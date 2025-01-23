@@ -7,6 +7,7 @@ signal combo_updated(value);
 @export var player: Player;
 
 @export var COMBO_TIMER_S: float = 3.0; ## How long to wait before considering a throw "complete"
+@export var GAME_TIMER_S: float = 300.0; ## How long to wait before considering a throw "complete"
 
 @onready var world_environment: WorldEnvironment = %WorldEnvironment
 
@@ -15,7 +16,8 @@ var throws: int = 0; ## How many times the ball was "thrown" (hit a pin within a
 var pins: Array[Pin] = []; ## All pins on the field on level load
 var knocked_pins: Array[Pin] = []; ## All pins that have been knocked over to avoid count if hit again
 var combo_pins: Array[Pin] = []; ## All the pins hit within a certain time frame of each other
-var timer: Timer = Timer.new();
+var c_timer: Timer = Timer.new(); ## Combo timer to determine the start and end of a throw
+var g_timer: Timer = Timer.new(); ## Game timer to determine final score
 
 var ball: RigidBody3D = null;
 var camera: CustomCamera = null;
@@ -27,9 +29,15 @@ func _ready() -> void:
 	ball.body_entered.connect(_on_ball_hit_pins);
 	
 	# Set up score timer data.
-	timer.one_shot = true;
-	timer.wait_time = COMBO_TIMER_S;
-	add_child(timer);
+	c_timer.one_shot = true;
+	c_timer.wait_time = COMBO_TIMER_S;
+	add_child(c_timer);
+	
+	# Set up game timer data.
+	g_timer.one_shot = true;
+	g_timer.wait_time = GAME_TIMER_S;
+	g_timer.autostart = true;
+	add_child(g_timer);
 	
 	# Keep track of pins placed in the scene.
 	var detected_pins = get_tree().get_nodes_in_group("Pins");
@@ -64,10 +72,10 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 	Globals.freeze_frame(0.35, 0.5);
 	camera._camera_shake(0.1, 0.1);
 	
-	if timer.is_stopped(): 
-		timer.start();
-		timer_started.emit(timer.wait_time);
-		await timer.timeout;
+	if c_timer.is_stopped(): 
+		c_timer.start();
+		timer_started.emit(c_timer.wait_time);
+		await c_timer.timeout;
 		score += len(combo_pins);
 		score_updated.emit(score);
 		
