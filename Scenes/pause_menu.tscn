@@ -65,24 +65,47 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 
-[node name="InvertLookLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="LookSensitivityLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Look Sensitivity"
+horizontal_alignment = 1
+
+[node name="SensitivitySlider" type="HSlider" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 0.05
+max_value = 0.85
+step = 0.1
+value = 0.35
+ticks_on_borders = true
+
+[node name="InvertLookRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="InvertLookLabel" type="Label" parent="CenterContainer/VBoxContainer/InvertLookRow"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Invert Look"
 horizontal_alignment = 1
 
-[node name="InvertLookToggle" type="CheckButton" parent="CenterContainer/VBoxContainer"]
+[node name="InvertLookToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/InvertLookRow"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 10
 
-[node name="DisableVisualizer" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="DisableVisualizerRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="DisableVisualizer" type="Label" parent="CenterContainer/VBoxContainer/DisableVisualizerRow"]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 22
 text = "Disable Visualizer"
 horizontal_alignment = 1
 
-[node name="VisualizerToggle" type="CheckButton" parent="CenterContainer/VBoxContainer"]
+[node name="VisualizerToggle" type="CheckButton" parent="CenterContainer/VBoxContainer/DisableVisualizerRow"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 10

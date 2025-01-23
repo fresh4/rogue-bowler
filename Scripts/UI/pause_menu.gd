@@ -5,6 +5,7 @@ extends Control
 @onready var invert_look_toggle: CheckButton = %InvertLookToggle
 @onready var bg: ColorRect = %BG
 @onready var visualizer_toggle: CheckButton = %VisualizerToggle
+@onready var sensitivity_slider: HSlider = %SensitivitySlider
 
 var is_paused: bool = false;
 
@@ -14,9 +15,17 @@ func _ready() -> void:
 	visualizer_toggle.pressed.connect(_on_toggle_visualizer);
 	sfx_slider.value_changed.connect(_on_sfx_slider_changed);
 	music_slider.value_changed.connect(_on_music_slider_changed);
+	sensitivity_slider.value_changed.connect(_on_sensitivity_slider_changed);
 	
-	music_slider.value = 0.5; # TODO: Get the existing value for the music player
-	sfx_slider.value = 0.5; # TODO: Get the existing value for the sfx player
+	# Set default settings and sync with slider values
+	music_slider.value = 0.5;
+	music_slider.value_changed.emit(music_slider.value);
+	
+	sfx_slider.value = 0.5;
+	sfx_slider.value_changed.emit(sfx_slider.value);
+	
+	sensitivity_slider.value = 0.35;
+	sensitivity_slider.value_changed.emit(sensitivity_slider.value);
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 
@@ -39,6 +48,9 @@ func _on_music_slider_changed(value):
 
 func _on_sfx_slider_changed(value):
 	AudioManager.set_volume("SFX", value);
+
+func _on_sensitivity_slider_changed(value):
+	Globals.camera_sensitivity_setting = value;
 
 func pause() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;

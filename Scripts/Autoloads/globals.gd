@@ -2,6 +2,7 @@ extends Node
 
 var is_look_inverted: bool = false;
 var is_visualizer_disabled: bool = false;
+var camera_sensitivity_setting: float = 1;
 
 func freeze_frame(timescale: float, duration: float) -> void:
 	# Function that 'stops' time for a very brief moment.

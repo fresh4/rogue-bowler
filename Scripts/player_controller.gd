@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion: #and Input.is_action_pressed("rotate_camera")
 		var invert = 1 if Globals.is_look_inverted else -1;
-		camera_pivot.rotate(Vector3(0,1,0), invert * event.relative.x * camera.camera_rotation_speed);
+		camera_pivot.rotate(Vector3(0,1,0), invert * event.relative.x * camera.camera_rotation_speed * Globals.camera_sensitivity_setting);
 
 func move(dir) -> void:
 	# Push the ball by applying torque along a direction at a passed in rate.
