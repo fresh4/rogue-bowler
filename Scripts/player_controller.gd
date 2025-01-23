@@ -1,8 +1,8 @@
 class_name Player extends Node3D
 
 @export var MAX_SPEED: int = 50; ## Maximum allowed speed (linear or angular).
-@export var ACC_RATE: float = 3.0; ## The rate at which ball will speed up.
-@export var SLAM_FORCE: float = 10.0 ## The downward force applied to the ball when "slamming".
+@export var ACC_RATE: float = 6.0; ## The rate at which ball will speed up.
+@export var SLAM_FORCE: float = 1500.0 ## The downward force applied to the ball when "slamming".
 @export var STRAFE_MULTIPLIER: float = 2.5; ## Speed multiplier for left/right movement.
 @export var BASE_FOV: float = 75.0; ## Default camera FOV.
 @export var MAX_FOV: float = 110.0; ## Maximum allowed camera FOV.
@@ -43,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 	ball.angular_velocity.y = clampf(ball.angular_velocity.y, -MAX_SPEED, MAX_SPEED);
 	ball.angular_velocity.z = clampf(ball.angular_velocity.z, -MAX_SPEED, MAX_SPEED);
 	handle_input();
+	offset_camera();
 
 func _input(event: InputEvent) -> void:
 	# If key is tapped, not held, reset camera rotation.
@@ -52,7 +53,7 @@ func _input(event: InputEvent) -> void:
 			reset_camera();
 	# Rotate the camera if key is held and mouse is in motion.
 	
-	if event is InputEventMouseMotion: #and Input.is_action_pressed("rotate_camera")
+	if event is InputEventMouseMotion:# and Input.is_action_pressed("rotate_camera"):
 		var invert = 1 if Globals.is_look_inverted else -1;
 		camera_pivot.rotate(Vector3(0,1,0), invert * event.relative.x * camera.camera_rotation_speed * Globals.camera_sensitivity_setting);
 
@@ -79,12 +80,20 @@ func handle_input() -> void:
 	if Input.is_action_pressed("right"):
 		move(forward.cross(Vector3.UP) * STRAFE_MULTIPLIER);
 	if Input.is_action_pressed("slam"):
-		ball.linear_velocity.y = clampf(ball.linear_velocity.y - SLAM_FORCE, -SLAM_FORCE, 0);
+		if ball.linear_velocity.y > 0: ball.linear_velocity.y = 0;
+		ball.apply_central_force(Vector3(0, -SLAM_FORCE, 0));
+		ball.linear_velocity.y = clampf(ball.linear_velocity.y, -MAX_SPEED*2, MAX_SPEED*2);
 
 ## Helper function to reset camera orientation.
 func reset_camera() -> void:
 	var tween = get_tree().create_tween();
 	tween.tween_property(camera_pivot, "rotation", default_camera_orientation, 0.15);
+
+## Dynamically offset the camera to "trail" based on horizontal speeds.
+func offset_camera() -> void:
+	var x = -ball.linear_velocity.dot(camera.global_basis.x)/1500;
+	camera.h_offset += x;
+	camera.h_offset = clampf(camera.h_offset, -0.5, 0.5);
 
 func set_emission(color: Color) -> void:
 	mesh.material_override.emission = color;
@@ -93,5 +102,5 @@ func set_emission(color: Color) -> void:
 func _on_hit_ground(body: Node3D) -> void:
 	if body is not GridMap: return;
 	if last_frames_velocity.y < -8:
-		camera._camera_shake(0.2, 0.075);
+		camera._camera_shake(0.1, 0.075);
 		#Globals.freeze_frame(0.4, 0.25);
