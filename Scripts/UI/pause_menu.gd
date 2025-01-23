@@ -24,12 +24,16 @@ func _ready() -> void:
 	sfx_slider.value = 0.5;
 	sfx_slider.value_changed.emit(sfx_slider.value);
 	
-	sensitivity_slider.value = 0.35;
+	sensitivity_slider.value = 0.5;
 	sensitivity_slider.value_changed.emit(sensitivity_slider.value);
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 
-func _input(_event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if !is_paused and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	if Input.is_action_just_pressed("pause"):
 		if is_paused: unpause();
 		else: pause();
