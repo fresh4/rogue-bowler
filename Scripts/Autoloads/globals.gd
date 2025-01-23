@@ -1,5 +1,9 @@
 extends Node
 
+const PINK: Color = Color(1, 0.027, 0.753, 1); 
+const CYAN: Color = Color(0.051, 0.996, 0.973, 1);
+const WHITE: Color = Color.WHITE;
+
 var is_look_inverted: bool = false;
 var is_visualizer_disabled: bool = false;
 var camera_sensitivity_setting: float = 1;

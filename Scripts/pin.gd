@@ -5,10 +5,6 @@ signal pin_knocked_over;
 @onready var mesh: MeshInstance3D = %Mesh
 
 var is_knocked: bool = false;
-var color: Color;
-
-#func _ready() -> void:
-	#mesh.material_override.emission = Color(randf(), randf(), randf(), 1.0);
 
 func _physics_process(_delta: float) -> void:
 	if not is_knocked and check_knocked():
@@ -18,6 +14,5 @@ func _physics_process(_delta: float) -> void:
 func check_knocked() -> bool:
 	return abs(rotation_degrees.x) > 45 or abs(rotation_degrees.z) > 45;
 
-func set_pin_color(c: Color) -> void:
-	color = c;
-	mesh.material_override.emission = c;
+func set_pin_color(value: Color) -> void:
+	mesh.material_override.emission = value;

@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://di0uduo7j2xgb" path="res://Assets/Textures/vaporwave-cross.png" id="2_1byhk"]
 [ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
 [ext_resource type="ArrayMesh" uid="uid://btmfrfideckb" path="res://Assets/Models/Terrain/plane-plain-3cm.obj" id="3_6kd8o"]
-[ext_resource type="PackedScene" uid="uid://d0y8f0wlh3x2i" path="res://Prefabs/pin.tscn" id="3_d8a7j"]
 [ext_resource type="Script" path="res://Scripts/UI/ui_manager.gd" id="5_2gcxh"]
 [ext_resource type="MeshLibrary" uid="uid://dxb4y04fmy1u7" path="res://gridmap.tres" id="7_uebtx"]
 [ext_resource type="Script" path="res://Scripts/map_manager.gd" id="8_2occa"]
 [ext_resource type="Theme" uid="uid://cssjhrmxb4sw7" path="res://Scenes/control_theme.tres" id="9_o065w"]
+[ext_resource type="PackedScene" uid="uid://bnj05b1o6krwy" path="res://Prefabs/pin_spawn_area.tscn" id="10_enx1a"]
 [ext_resource type="PackedScene" uid="uid://dwfq6esp2sof6" path="res://Scenes/pause_menu.tscn" id="10_ychq2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x6owf"]
@@ -82,69 +82,7 @@ light_energy = 1.2
 sky_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ho05h")]
-
-[node name="Pins" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.9389, 0, 0)
-
-[node name="Pin" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0)
-
-[node name="Pin2" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259266, 0, 0.8)
-
-[node name="Pin3" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259266, 0, -0.8)
-
-[node name="Pin4" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, 0)
-
-[node name="Pin5" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, 0.8)
-
-[node name="Pin6" parent="Pins" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, -0.8)
-
-[node name="Pins2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3389, 0, 4.13797)
-
-[node name="Pin" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0)
-
-[node name="Pin2" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259266, 0, 0.8)
-
-[node name="Pin3" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259266, 0, -0.8)
-
-[node name="Pin4" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, 0)
-
-[node name="Pin5" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, 0.8)
-
-[node name="Pin6" parent="Pins2" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, -0.8)
-
-[node name="Pins3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.3389, 0, -5.80185)
-
-[node name="Pin" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259265, 0, 0)
-
-[node name="Pin2" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259266, 0, 0.8)
-
-[node name="Pin3" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.259266, 0, -0.8)
-
-[node name="Pin4" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, 0)
-
-[node name="Pin5" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, 0.8)
-
-[node name="Pin6" parent="Pins3" instance=ExtResource("3_d8a7j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658758, 0, -0.8)
+COLOR_OPTIONS = Array[Color]([Color(0, 0.6, 1, 1), Color(0.0509804, 0.996078, 0.972549, 1)])
 
 [node name="MapManager" type="Node3D" parent="."]
 script = ExtResource("8_2occa")
@@ -246,3 +184,15 @@ value = 17.4
 show_percentage = false
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("10_ychq2")]
+
+[node name="PinSpawnArea" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 0, 0)
+selected_color = "WHITE"
+fill_on_start = false
+
+[node name="PinSpawnArea2" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, 12)
+selected_color = "PINK"
+
+[node name="PinSpawnArea3" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, -6)

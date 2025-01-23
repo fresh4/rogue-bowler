@@ -1,7 +1,7 @@
 class_name Player extends Node3D
 
 @export var MAX_SPEED: int = 50; ## Maximum allowed speed (linear or angular).
-@export var ACC_RATE: float = 4.0; ## The rate at which ball will speed up.
+@export var ACC_RATE: float = 3.0; ## The rate at which ball will speed up.
 @export var SLAM_FORCE: float = 10.0 ## The downward force applied to the ball when "slamming".
 @export var STRAFE_MULTIPLIER: float = 2.5; ## Speed multiplier for left/right movement.
 @export var BASE_FOV: float = 75.0; ## Default camera FOV.
