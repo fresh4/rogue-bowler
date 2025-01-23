@@ -7,7 +7,8 @@ class_name PinSpawner extends Node3D
 
 @onready var pins_scene = preload("res://Prefabs/pin_group.tscn");
 
-var color: Color;
+var color: Color; ## The color of the spawner, set in the inspector by `selected_color`.
+var has_pins: bool = false; ## Whether or not the spawner has pins spawned in it.
 
 func _ready() -> void:
 	set_spawner_color();
@@ -30,3 +31,4 @@ func spawn_pins() -> void:
 	for pin in pins.get_children():
 		if pin is Pin:
 			pin.set_pin_color(color);
+	has_pins = true;
