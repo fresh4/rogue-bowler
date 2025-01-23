@@ -66,6 +66,7 @@ script = ExtResource("1_sttxf")
 player = NodePath("Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
 environment = SubResource("Environment_mnx18")
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]

@@ -4,12 +4,14 @@ extends Control
 @onready var sfx_slider: HSlider = %SFXSlider
 @onready var invert_look_toggle: CheckButton = %InvertLookToggle
 @onready var bg: ColorRect = %BG
+@onready var visualizer_toggle: CheckButton = %VisualizerToggle
 
 var is_paused: bool = false;
 
 func _ready() -> void:
 	visible = false;
 	invert_look_toggle.pressed.connect(_on_toggle_invert_look);
+	visualizer_toggle.pressed.connect(_on_toggle_visualizer);
 	sfx_slider.value_changed.connect(_on_sfx_slider_changed);
 	music_slider.value_changed.connect(_on_music_slider_changed);
 	
@@ -26,6 +28,9 @@ func _input(_event: InputEvent) -> void:
 
 func _on_toggle_invert_look():
 	Globals.is_look_inverted = !Globals.is_look_inverted;
+
+func _on_toggle_visualizer():
+	Globals.is_visualizer_disabled = !Globals.is_visualizer_disabled;
 
 func _on_music_slider_changed(value):
 	AudioManager.set_volume("Music", value);

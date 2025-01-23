@@ -10,6 +10,7 @@ friction = 0.75
 bounce = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tue54"]
+resource_local_to_scene = true
 albedo_texture = ExtResource("2_i6gvg")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
@@ -33,7 +34,8 @@ freeze_mode = 1
 max_contacts_reported = 1
 script = ExtResource("1_wc0v7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="MeshInstance3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_tue54")
 mesh = ExtResource("2_mtnrn")

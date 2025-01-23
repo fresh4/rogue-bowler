@@ -30,6 +30,7 @@ points = PackedVector3Array(-0.499434, -0.0238842, 0, -0.497087, -0.0238842, 0.0
 
 [node name="Player" type="Node3D"]
 script = ExtResource("2_gxivv")
+COLOR_OPTIONS = Array[Color]([Color(0, 0.6, 1, 1)])
 
 [node name="Ball" type="RigidBody3D" parent="."]
 unique_name_in_owner = true
@@ -40,7 +41,8 @@ mass = 40.0
 contact_monitor = true
 max_contacts_reported = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+[node name="Mesh" type="MeshInstance3D" parent="Ball"]
+unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_w8e33")
 mesh = ExtResource("3_aa15h")
@@ -63,10 +65,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.992546, 0.121869, 0, -0.121869, 0.992546, 0, 1, 3)
 script = ExtResource("3_a87xt")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.208717, 0)
-light_color = Color(0.923706, 0.0234375, 1, 1)
-light_energy = 2.2
+[node name="BallLight" type="OmniLight3D" parent="CameraPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.387048, 0)
+light_color = Color(0.921875, 0, 1, 1)
 light_size = 0.25
 omni_range = 2.0
 omni_attenuation = 1.13
