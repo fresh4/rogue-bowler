@@ -45,7 +45,7 @@ func _ready() -> void:
 	# Set up game timer data.
 	g_timer.one_shot = true;
 	g_timer.wait_time = GAME_TIMER_S;
-	g_timer.autostart = true;
+	#g_timer.autostart = true;
 	add_child(g_timer);
 	
 	# Keep track of pins placed in the scene.
@@ -57,6 +57,12 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	horizon_beat_visualizer(delta);
+
+func start_game() -> void:
+	player.animator.play("Start");
+	await player.animator.animation_finished;
+	Globals.is_game_started = true;
+	g_timer.start();
 
 func horizon_beat_visualizer(delta: float) -> void:
 	if Globals.is_visualizer_disabled: return

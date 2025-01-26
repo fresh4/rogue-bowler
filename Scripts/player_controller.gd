@@ -13,12 +13,14 @@ class_name Player extends Node3D
 @onready var ball: RigidBody3D = %Ball;
 @onready var mesh: MeshInstance3D = %Mesh;
 @onready var ball_light: OmniLight3D = %BallLight
+@onready var animator: AnimationPlayer = $Animator
 
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
 var default_camera_orientation: Vector3;
 var last_frames_velocity: Vector3 = Vector3.ZERO;
 
 func _ready() -> void:
+	animator.pause();
 	set_emission(COLOR_OPTIONS[0]);
 	camera.fov = BASE_FOV;
 	default_camera_orientation = camera_pivot.rotation;
@@ -46,13 +48,15 @@ func _physics_process(_delta: float) -> void:
 	offset_camera();
 
 func _input(event: InputEvent) -> void:
+	if not Globals.is_game_started: return;
+	
 	# If key is tapped, not held, reset camera rotation.
 	if Input.is_action_just_pressed("rotate_camera"):
 		await get_tree().create_timer(0.15).timeout;
 		if not Input.is_action_pressed("rotate_camera"):
 			reset_camera();
-	# Rotate the camera if key is held and mouse is in motion.
 	
+	# Rotate the camera if key is held and mouse is in motion.
 	if event is InputEventMouseMotion:# and Input.is_action_pressed("rotate_camera"):
 		var invert = 1 if Globals.is_look_inverted else -1;
 		camera_pivot.rotate(Vector3(0,1,0), invert * event.relative.x * camera.camera_rotation_speed * Globals.camera_sensitivity_setting);

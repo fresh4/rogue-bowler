@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 @export var show_fps: bool = false;
 
@@ -14,7 +14,8 @@ var timer_length: float = 0;
 var combo_arr = ["Hit Something!", "Single", "Double", "Triple", "Quad!", "Penta!", "SEXTUPLE!", "SEPTOUPLE!", "OCTOUPLE!", "NINER!", "STRIKE!!!"];
 
 func _ready() -> void:
-	level_manager = get_parent();
+	visible = false;
+	level_manager = get_parent().get_parent();
 	
 	level_manager.score_updated.connect(update_score);
 	level_manager.combo_updated.connect(update_combo);
@@ -26,6 +27,7 @@ func _ready() -> void:
 	fps.visible = show_fps;
 
 func _process(_delta: float) -> void:
+	if Globals.is_game_started and not visible: visible = true;
 	update_game_timer();
 	if show_fps: fps.text = str(Engine.get_frames_per_second());
 
