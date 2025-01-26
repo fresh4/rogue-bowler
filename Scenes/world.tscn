@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bn10afwxhar2c"]
+[gd_scene load_steps=18 format=3 uid="uid://bn10afwxhar2c"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_sttxf"]
 [ext_resource type="Texture2D" uid="uid://di0uduo7j2xgb" path="res://Assets/Textures/vaporwave-cross.png" id="2_1byhk"]
@@ -10,6 +10,7 @@
 [ext_resource type="Theme" uid="uid://cssjhrmxb4sw7" path="res://Assets/Materials/control_theme.tres" id="9_o065w"]
 [ext_resource type="PackedScene" uid="uid://bnj05b1o6krwy" path="res://Prefabs/pin_spawn_area.tscn" id="10_enx1a"]
 [ext_resource type="PackedScene" uid="uid://dwfq6esp2sof6" path="res://Scenes/pause_menu.tscn" id="10_ychq2"]
+[ext_resource type="PackedScene" uid="uid://cyxe6tvwib3ib" path="res://Prefabs/spawn_token.tscn" id="11_u47pg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x6owf"]
 sky_top_color = Color(0.0627451, 0.027451, 0.129412, 1)
@@ -92,7 +93,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh_library = ExtResource("7_uebtx")
 data = {
-"cells": PackedInt32Array(0, 0, 0, 65506, 65521, 1, 65506, 0, 0, 65521, 0, 0, 0, 15, 1441794, 65506, 15, 1048577, 15, 0, 2, 15, 15, 655362, 15, 65521, 655360, 15, 65506, 655360, 0, 65506, 655360, 65521, 65506, 655360, 65506, 65506, 655360, 15, 30, 655360, 0, 30, 655360, 65521, 30, 655360, 65506, 30, 655360, 65491, 65506, 655360, 65491, 65521, 655360, 65491, 0, 655360, 65491, 15, 655360, 65491, 30, 655360, 65521, 15, 3, 65521, 65521, 4)
+"cells": PackedInt32Array(0, 0, 0, 65506, 65521, 1, 65506, 0, 0, 65521, 0, 0, 0, 15, 1441794, 65506, 15, 1048577, 15, 0, 2, 15, 15, 655362, 15, 65521, 655360, 15, 65506, 655360, 0, 65506, 655360, 65521, 65506, 655360, 65506, 65506, 655360, 15, 30, 655360, 0, 30, 655360, 65521, 30, 655360, 65506, 30, 655360, 65491, 65506, 655360, 65491, 65521, 655360, 65491, 0, 655360, 65491, 15, 655360, 65491, 30, 655360, 65521, 15, 3, 65521, 65521, 4, 15, 45, 5, 65476, 30, 1441798, 30, 65506, 1048582, 65491, 65491, 655365, 65506, 65491, 4, 0, 65491, 1, 65506, 45, 1048578, 65521, 45, 4, 30, 0, 1441796, 30, 65521, 1441794, 65476, 0, 1441796, 65476, 65521, 1441795)
 }
 
 [node name="CSGGrid" type="CSGCombiner3D" parent="MapManager"]
@@ -112,6 +113,7 @@ operation = 2
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("5_2gcxh")
+show_fps = true
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 15
@@ -213,3 +215,6 @@ selected_color = "PINK"
 
 [node name="PinSpawnArea3" parent="." instance=ExtResource("10_enx1a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, -6)
+
+[node name="SpawnToken" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.283659, 0, -0.958926, 0, 1, 0, 0.958926, 0, 0.283659, -5, 0.5, 0)
