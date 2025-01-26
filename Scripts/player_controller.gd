@@ -91,6 +91,11 @@ func reset_camera() -> void:
 
 ## Dynamically offset the camera to "trail" based on horizontal speeds.
 func offset_camera() -> void:
+	if not (Input.is_action_pressed("left") or Input.is_action_pressed("right")):
+		if camera.h_offset < 0: camera.h_offset += 0.01;
+		elif camera.h_offset > 0: camera.h_offset -= 0.01;
+		if abs(camera.h_offset) < 0.05: camera.h_offset = 0;
+		return;
 	var x = -ball.linear_velocity.dot(camera.global_basis.x)/1500;
 	camera.h_offset += x;
 	camera.h_offset = clampf(camera.h_offset, -0.5, 0.5);
