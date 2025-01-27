@@ -63,7 +63,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="World" type="Node3D" node_paths=PackedStringArray("player")]
+[node name="World" type="Node3D" node_paths=PackedStringArray("player") groups=["LevelManager"]]
 script = ExtResource("1_sttxf")
 player = NodePath("Player")
 
@@ -89,17 +89,8 @@ COLOR_OPTIONS = Array[Color]([Color(0, 0.6, 1, 1), Color(0.0509804, 0.996078, 0.
 [node name="MapManager" type="Node3D" parent="."]
 script = ExtResource("8_2occa")
 
-[node name="GridMap" type="GridMap" parent="MapManager"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh_library = ExtResource("7_uebtx")
-data = {
-"cells": PackedInt32Array(0, 0, 0, 65506, 65521, 1, 65506, 0, 0, 65521, 0, 0, 0, 15, 1441794, 65506, 15, 1048577, 15, 0, 2, 15, 15, 655362, 15, 65521, 655360, 15, 65506, 655360, 0, 65506, 655360, 65521, 65506, 655360, 65506, 65506, 655360, 15, 30, 655360, 0, 30, 655360, 65521, 30, 655360, 65506, 30, 655360, 65491, 65506, 655360, 65491, 65521, 655360, 65491, 0, 655360, 65491, 15, 655360, 65491, 30, 655360, 65521, 15, 3, 65521, 65521, 4, 15, 45, 5, 65476, 30, 1441798, 30, 65506, 1048582, 65491, 65491, 655365, 65506, 65491, 4, 0, 65491, 1, 65506, 45, 1048578, 65521, 45, 4, 30, 0, 1441796, 30, 65521, 1441794, 65476, 0, 1441796, 65476, 65521, 1441795)
-}
-
 [node name="CSGGrid" type="CSGCombiner3D" parent="MapManager"]
 unique_name_in_owner = true
-visible = false
 operation = 2
 
 [node name="GridMesh" type="CSGMesh3D" parent="MapManager/CSGGrid"]
@@ -109,8 +100,18 @@ material = SubResource("StandardMaterial3D_xx6xu")
 
 [node name="SubtractionBox" type="CSGBox3D" parent="MapManager/CSGGrid"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 operation = 2
+size = Vector3(300, 20, 300)
+
+[node name="GridMap" type="GridMap" parent="MapManager"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh_library = ExtResource("7_uebtx")
+cell_size = Vector3(30, 2, 30)
+data = {
+"cells": PackedInt32Array(65535, 0, 655360, 65535, 65535, 655360, 0, 65535, 655360, 0, 0, 655360, 65534, 65535, 2, 65533, 0, 6, 65534, 65534, 655364, 65535, 65534, 655361, 0, 65534, 655363, 0, 1, 5, 1, 65534, 1441798, 65535, 1, 1048578, 2, 0, 1441798, 2, 65534, 1441795, 65534, 1, 655366, 65535, 3, 7, 1, 3, 1048582, 65534, 2, 1048577, 65534, 3, 655362, 65533, 2, 1441798, 2, 2, 1441793, 2, 3, 1441792, 65534, 65532, 1441799, 65533, 65532, 1441798, 1, 65532, 655365, 1, 65533, 655360, 2, 65533, 1048582, 2, 65535, 5, 3, 65533, 0, 3, 65532, 655362, 3, 1, 1048579, 3, 3, 1048577, 3, 2, 1048576, 3, 0, 1048576, 65532, 1, 1048583, 65531, 65535, 4, 65532, 2, 655365, 65532, 3, 655360, 65531, 65534, 655360, 65532, 65533, 1048578, 65531, 65532, 6, 65531, 65533, 3, 3, 4, 0, 2, 4, 0, 1, 4, 0, 0, 4, 0, 65535, 4, 0, 65534, 4, 0, 65533, 4, 0, 65532, 4, 0, 65531, 4, 0, 4, 4, 0, 4, 3, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 4, 65535, 0, 4, 65534, 0, 4, 65533, 0, 4, 65532, 0, 4, 65531, 0, 3, 65531, 0, 2, 65531, 0, 1, 65531, 0, 0, 65531, 0, 65535, 65531, 0, 65534, 65531, 0, 65533, 65531, 0, 65532, 65531, 0, 65531, 65531, 0)
+}
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -185,6 +186,32 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "STRIKE"
 
+[node name="TimerContainer" type="Control" parent="UI/GameUI/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="TimerSlider" type="ProgressBar" parent="UI/GameUI/MarginContainer/VBoxContainer/TimerContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(160, 5)
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 5.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_pic8n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dnylh")
+value = 17.4
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ScorecardRows" type="VBoxContainer" parent="UI/GameUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_constants/separation = -2
+
 [node name="FPS" type="Label" parent="UI/GameUI/MarginContainer"]
 unique_name_in_owner = true
 visible = false
@@ -192,25 +219,6 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "60"
-
-[node name="TimerSlider" type="ProgressBar" parent="UI/GameUI"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.03
-anchor_top = 0.16
-anchor_right = 0.2
-anchor_bottom = 0.169
-offset_bottom = 1.04999
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_pic8n")
-theme_override_styles/fill = SubResource("StyleBoxFlat_dnylh")
-value = 17.4
-show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="StartMenu" type="Control" parent="UI"]
 process_mode = 3
@@ -279,12 +287,22 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 0
 selected_color = "WHITE"
 fill_on_start = false
 
-[node name="PinSpawnArea2" parent="." instance=ExtResource("10_enx1a")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -42, 0, 12)
-selected_color = "PINK"
-
 [node name="PinSpawnArea3" parent="." instance=ExtResource("10_enx1a")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -33, 0, -6)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -27, 0, -27)
 
 [node name="SpawnToken" parent="." instance=ExtResource("11_u47pg")]
-transform = Transform3D(-0.997173, 0, -0.0751505, 0, 1, 0, 0.0751505, 0, -0.997173, -5, 0.5, 0)
+transform = Transform3D(-0.641285, 0, -0.767303, 0, 1, 0, 0.767303, 0, -0.641285, -5, 0.5, 0)
+
+[node name="PinSpawnArea2" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 13.7, -93)
+selected_color = "PINK"
+
+[node name="PinSpawnArea4" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.0115879, -0.00513906, -0.99992, 0.00602813, 0.999968, -0.00520917, 0.999915, -0.00608801, -0.0115565, 0, 13.7, 86)
+
+[node name="PinSpawnArea6" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 72, 0, 102)
+selected_color = "PINK"
+
+[node name="PinSpawnArea5" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 13.694, 27)

@@ -16,7 +16,7 @@ emission = Color(0.051, 0.996, 0.973, 1)
 emission_energy_multiplier = 3.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_3i2im"]
-size = Vector3(3, 3, 0.4)
+size = Vector3(3, 3, 0.02)
 
 [node name="PinSpawnArea" type="Node3D" node_paths=PackedStringArray("triangle_mesh") groups=["PinSpawners"]]
 script = ExtResource("1_lxpoc")

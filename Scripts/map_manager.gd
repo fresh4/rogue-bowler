@@ -18,9 +18,9 @@ func _ready() -> void:
 		if cell.z < min_z: min_z = cell.z;
 		if cell.z > max_z: max_z = cell.z;
 		
-	var size: Vector3 = Vector3(calculate_bounds(min_x, max_x), 12, calculate_bounds(min_z, max_z));
+	var size: Vector3 = Vector3(calculate_bounds(min_x, max_x), 20, calculate_bounds(min_z, max_z));
 	subtraction_box.size = size;
 	
 
 func calculate_bounds(min_n: int, max_n: int) -> int:
-	return ( 30 * ( ( abs(min_n) + abs(max_n) ) / 15 ) ) + 30;
+	return 30 * ( abs(min_n) + abs(max_n) ) + 30;

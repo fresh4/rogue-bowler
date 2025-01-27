@@ -1,6 +1,6 @@
 class_name Player extends Node3D
 
-@export var MAX_SPEED: int = 50; ## Maximum allowed speed (linear or angular).
+@export var MAX_SPEED: int = 100; ## Maximum allowed speed (linear).
 @export var ACC_RATE: float = 6.0; ## The rate at which ball will speed up.
 @export var SLAM_FORCE: float = 1500.0 ## The downward force applied to the ball when "slamming".
 @export var STRAFE_MULTIPLIER: float = 2.5; ## Speed multiplier for left/right movement.
@@ -31,6 +31,7 @@ func _process(_delta: float) -> void:
 	camera_pivot.global_position = ball.global_position;
 
 func _physics_process(_delta: float) -> void:
+	if not Globals.is_game_started: return;
 	# Store the previous frame's velocity for calulating velocity on impacts.
 	last_frames_velocity = ball.linear_velocity;
 	
