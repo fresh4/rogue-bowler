@@ -2,14 +2,18 @@ extends Control
 
 @export var show_fps: bool = false;
 
-@onready var score_value: Label = %ScoreValue
-@onready var combo_value: Label = %ComboValue
-@onready var timer_slider: ProgressBar = %TimerSlider
-@onready var game_timer_label: Label = %GameTimerLabel
-@onready var fps: Label = %FPS
+@onready var score_value: Label = %ScoreValue;
+@onready var combo_value: Label = %ComboValue;
+@onready var timer_slider: ProgressBar = %TimerSlider;
+@onready var game_timer_label: Label = %GameTimerLabel;
+@onready var fps: Label = %FPS;
+@onready var scorecard_rows: VBoxContainer = %ScorecardRows
+
+const FRAME = preload("res://Prefabs/frame.tscn");
 
 var level_manager: LevelManager = null;
 var timer_length: float = 0;
+var frames: Array[Frame] = [];
 
 var combo_arr = ["Hit Something!", "Single", "Double", "Triple", "Quad!", "Penta!", "SEXTUPLE!", "SEPTOUPLE!", "OCTOUPLE!", "NINER!", "STRIKE!!!"];
 
@@ -20,11 +24,17 @@ func _ready() -> void:
 	level_manager.score_updated.connect(update_score);
 	level_manager.combo_updated.connect(update_combo);
 	level_manager.timer_started.connect(start_timer_bar);
+	level_manager.frame_updated.connect(update_frames);
 	
 	score_value.text = str(0);
 	combo_value.text = combo_arr[0];
 	timer_slider.visible = false;
 	fps.visible = show_fps;
+	
+	for i in range(10):
+		var frame_obj = FRAME.instantiate();
+		scorecard_rows.add_child(frame_obj);
+		frames.append(frame_obj);
 
 func _process(_delta: float) -> void:
 	if Globals.is_game_started and not visible: visible = true;
@@ -36,6 +46,10 @@ func update_score(score: int) -> void:
 
 func update_combo(value) -> void:
 	combo_value.text = combo_arr[ clamp( value, 0, len(combo_arr) - 1 ) ];
+
+func update_frames(value: Array) -> void:
+	var i = level_manager.current_frame;
+	frames[i].fill_frame(value);
 
 func start_timer_bar(wait_time: float) -> void:
 	timer_length = wait_time;

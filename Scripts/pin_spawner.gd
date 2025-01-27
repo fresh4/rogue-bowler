@@ -9,8 +9,10 @@ class_name PinSpawner extends Node3D
 
 var color: Color; ## The color of the spawner, set in the inspector by `selected_color`.
 var has_pins: bool = false; ## Whether or not the spawner has pins spawned in it.
+var level_manager: LevelManager;
 
 func _ready() -> void:
+	level_manager = get_tree().get_first_node_in_group("LevelManager") as LevelManager;
 	set_spawner_color();
 	# Only run the following in game.
 	if Engine.is_editor_hint(): return;
@@ -31,4 +33,6 @@ func spawn_pins() -> void:
 	for pin in pins.get_children():
 		if pin is Pin:
 			pin.set_pin_color(color);
+			level_manager.pins.append(pin);
+			pin.pin_knocked_over.connect(level_manager._on_pin_knocked_over.bind(pin));
 	has_pins = true;

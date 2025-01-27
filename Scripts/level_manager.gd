@@ -3,15 +3,17 @@ class_name LevelManager extends Node3D
 signal score_updated(score);
 signal timer_started(time);
 signal combo_updated(value);
+signal frame_updated(value);
 
 @export var player: Player;
 
 @export var COMBO_TIMER_S: float = 3.0; ## How long to wait before considering a throw "complete"
 @export var GAME_TIMER_S: float = 300.0; ## How long to wait before considering a throw "complete"
 
-@onready var world_environment: WorldEnvironment = %WorldEnvironment
+@onready var world_environment: WorldEnvironment = %WorldEnvironment;
 
-var score: int = 0; ## Total effective score
+var total_score: int = 0 ## Total effective score.
+var score: int = 0; ## Total score for a given frame. Resets each progressed frame.
 var current_throw: int = 0; ## How many times the ball was "thrown" (hit a pin within a time frame)
 var current_frame: int = 0; ## Which frame (out of 10) we're on
 var frame_scores_list: Array[Array] = []; ## A list of arrays, each of max length 2.
@@ -35,7 +37,7 @@ func _ready() -> void:
 	# Init frames
 	for i in range(10):
 		frame_scores_list.append([0,0]);
-		frame_display_list.append([0,0]);
+		frame_display_list.append(["",""]);
 	
 	# Set up score timer data.
 	c_timer.one_shot = true;
@@ -45,15 +47,7 @@ func _ready() -> void:
 	# Set up game timer data.
 	g_timer.one_shot = true;
 	g_timer.wait_time = GAME_TIMER_S;
-	#g_timer.autostart = true;
 	add_child(g_timer);
-	
-	# Keep track of pins placed in the scene.
-	var detected_pins = get_tree().get_nodes_in_group("Pins");
-	for obj in detected_pins:
-		if obj is Pin:
-			pins.append(obj);
-			obj.pin_knocked_over.connect(_on_pin_knocked_over.bind(obj));
 
 func _physics_process(delta: float) -> void:
 	horizon_beat_visualizer(delta);
@@ -94,7 +88,7 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 		timer_started.emit(c_timer.wait_time);
 		await c_timer.timeout;
 		calculate_score();
-		score_updated.emit(score);
+		score_updated.emit(total_score);
 		c_timer.wait_time = COMBO_TIMER_S;
 		
 		combo_pins = [];
@@ -107,6 +101,7 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 func calculate_score() -> void:
 	var frame_score: int = len(combo_pins); # Number of pins knocked over this throw.
 	score += frame_score; # Counts the TOTAL knocked over pins this frame.
+	total_score += frame_score; # Adds to the global game score. TODO: Maybe change.
 	current_throw += 1; # Increment the throw; a frame consists of (max) two throws.
 	
 	# Skip to next frame if strike.
@@ -123,7 +118,7 @@ func calculate_score() -> void:
 		# TODO: Modify score
 	
 	# Progress to next frame if we've made two throws this frame, regardless of final score.
-	if current_throw >= 2: 
+	if current_throw >= 2:
 		update_frames(frame_score);
 		progress_to_next_frame();
 		return;
@@ -136,7 +131,8 @@ func calculate_score() -> void:
 func update_frames(value: int, value2: String = str(value)) -> void:
 	frame_scores_list[current_frame][current_throw - 1] = (value);
 	frame_display_list[current_frame][current_throw - 1] = str(value2);
-	print("RAW SCORES: ", frame_scores_list, " DISPLAYED SCORES: ", frame_display_list);
+	frame_updated.emit(frame_display_list[current_frame]);
+	#print("RAW SCORES: ", frame_scores_list, " DISPLAYED SCORES: ", frame_display_list);
 
 func progress_to_next_frame() -> void:
 		current_frame += 1; 

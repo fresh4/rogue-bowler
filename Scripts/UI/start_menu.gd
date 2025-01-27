@@ -19,7 +19,7 @@ func _ready() -> void:
 	add_child(pause_menu);
 	pause_menu.visible = false;
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Globals.is_game_started: return;
 	if Input.is_action_just_pressed("pause"):
 		pause_menu.visible = false;
