@@ -4,6 +4,7 @@ signal score_updated(score);
 signal timer_started(time);
 signal combo_updated(value);
 signal frame_updated(value);
+signal game_ended();
 
 @export var player: Player;
 
@@ -11,6 +12,8 @@ signal frame_updated(value);
 @export var GAME_TIMER_S: float = 300.0; ## How long to wait before considering a throw "complete"
 
 @onready var world_environment: WorldEnvironment = %WorldEnvironment;
+
+const MAX_THROWS = 10;
 
 var total_score: int = 0 ## Total effective score.
 var score: int = 0; ## Total score for a given frame. Resets each progressed frame.
@@ -138,6 +141,8 @@ func progress_to_next_frame() -> void:
 		current_frame += 1; 
 		current_throw = 0;
 		score = 0;
+		if current_frame >= MAX_THROWS and Globals.is_game_started:
+			game_ended.emit();
 
 func _on_pin_knocked_over(pin: Pin) -> void:
 	if pin not in knocked_pins:

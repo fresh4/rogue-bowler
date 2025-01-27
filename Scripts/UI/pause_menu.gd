@@ -12,6 +12,8 @@ var is_paused: bool = false;
 
 func _ready() -> void:
 	visible = false;
+	
+	# Connect UI events to local functions.
 	invert_look_toggle.pressed.connect(_on_toggle_invert_look);
 	visualizer_toggle.pressed.connect(_on_toggle_visualizer);
 	sfx_slider.value_changed.connect(_on_sfx_slider_changed);
@@ -28,8 +30,6 @@ func _ready() -> void:
 	
 	sensitivity_slider.value = 0.5;
 	sensitivity_slider.value_changed.emit(sensitivity_slider.value);
-	
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 
 func _input(event: InputEvent) -> void:
 	if not Globals.is_game_started: return;

@@ -10,6 +10,7 @@ extends Control
 @onready var scorecard_rows: VBoxContainer = %ScorecardRows
 
 const FRAME = preload("res://Prefabs/frame.tscn");
+const END_MENU = preload("res://Scenes/end_menu.tscn");
 
 var level_manager: LevelManager = null;
 var timer_length: float = 0;
@@ -25,6 +26,7 @@ func _ready() -> void:
 	level_manager.combo_updated.connect(update_combo);
 	level_manager.timer_started.connect(start_timer_bar);
 	level_manager.frame_updated.connect(update_frames);
+	level_manager.game_ended.connect(end_game);
 	
 	score_value.text = str(0);
 	combo_value.text = combo_arr[0];
@@ -66,3 +68,12 @@ func update_game_timer() -> void:
 	var game_time_m: int = int(level_manager.g_timer.time_left / 60);
 	
 	game_timer_label.text = "%02d:%02d" % [game_time_m, game_time_s]
+
+func end_game() -> void:
+	Globals.is_game_started = false;
+	
+	var TIMER: int = 1;
+	var end_menu = END_MENU.instantiate();
+	Globals.freeze_frame(0.4, TIMER+2);
+	await get_tree().create_timer(TIMER).timeout;
+	get_parent().add_child(end_menu);

@@ -33,6 +33,7 @@ func _on_start_button_pressed() -> void:
 	level_manager.start_game();
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 	pause_menu.queue_free();
+	queue_free();
 
 func _on_settings_button_pressed() -> void:
 	pause_menu.visible = !pause_menu.visible;
