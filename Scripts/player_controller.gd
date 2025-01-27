@@ -18,6 +18,7 @@ class_name Player extends Node3D
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
 var default_camera_orientation: Vector3;
 var last_frames_velocity: Vector3 = Vector3.ZERO;
+var initial_camera_pos: Vector3 = Vector3(0,1,3);
 
 func _ready() -> void:
 	animator.pause();
@@ -29,6 +30,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Reset camera's (parent) position to follow ball.
 	camera_pivot.global_position = ball.global_position;
+	if camera.position != initial_camera_pos: initial_camera_pos = initial_camera_pos;
 
 func _physics_process(_delta: float) -> void:
 	if not Globals.is_game_started: return;
@@ -40,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 	
 	# Limit ball velocities.
 	ball.linear_velocity.x = clampf(ball.linear_velocity.x, -MAX_SPEED, MAX_SPEED);
-	ball.linear_velocity.y = clampf(ball.linear_velocity.y, -MAX_SPEED, MAX_SPEED);
+	#ball.linear_velocity.y = clampf(ball.linear_velocity.y, -MAX_SPEED, MAX_SPEED);
 	ball.linear_velocity.z = clampf(ball.linear_velocity.z, -MAX_SPEED, MAX_SPEED);
 	ball.angular_velocity.x = clampf(ball.angular_velocity.x, -MAX_SPEED, MAX_SPEED);
 	ball.angular_velocity.y = clampf(ball.angular_velocity.y, -MAX_SPEED, MAX_SPEED);

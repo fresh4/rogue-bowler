@@ -291,7 +291,7 @@ fill_on_start = false
 transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -27, 0, -27)
 
 [node name="SpawnToken" parent="." instance=ExtResource("11_u47pg")]
-transform = Transform3D(-0.641285, 0, -0.767303, 0, 1, 0, 0.767303, 0, -0.641285, -5, 0.5, 0)
+transform = Transform3D(-0.504463, 0, -0.863433, 0, 1, 0, 0.863433, 0, -0.504463, -5, 0.5, 0)
 
 [node name="PinSpawnArea2" parent="." instance=ExtResource("10_enx1a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 13.7, -93)
