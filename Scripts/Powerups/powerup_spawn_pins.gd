@@ -8,7 +8,9 @@ extends PowerUp
 func activate(_body: RigidBody3D) -> void:
 	# If we want to activate a specific spawner, do that and return.
 	if pin_spawner: 
-		return pin_spawner.spawn_pins();
+		queue_free();
+		pin_spawner.spawn_pins();
+		return; 
 	
 	# If no specific spawner, pick a random free one and activate it.
 	# Get all the spawners in the scene. 

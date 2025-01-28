@@ -19,6 +19,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child is MeshInstance3D:
 			mesh = child;
+	_on_selection_changed();
 
 func _physics_process(delta: float) -> void:
 	rotation.y += delta * 5;
