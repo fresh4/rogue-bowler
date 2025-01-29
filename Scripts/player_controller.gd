@@ -41,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 	
 	# Limit ball velocities.
 	ball.linear_velocity.x = clampf(ball.linear_velocity.x, -MAX_SPEED, MAX_SPEED);
-	#ball.linear_velocity.y = clampf(ball.linear_velocity.y, -MAX_SPEED, MAX_SPEED);
+	ball.linear_velocity.y = clampf(ball.linear_velocity.y, -50, 50);
 	ball.linear_velocity.z = clampf(ball.linear_velocity.z, -MAX_SPEED, MAX_SPEED);
 	ball.angular_velocity.x = clampf(ball.angular_velocity.x, -MAX_SPEED, MAX_SPEED);
 	ball.angular_velocity.y = clampf(ball.angular_velocity.y, -MAX_SPEED, MAX_SPEED);
