@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bnuu2w5u41pqn"
+path="res://.godot/imported/slope-2.obj-9bbd742a25d35aa38ebc38e7b3a629eb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/slope-2.obj-9bbd742a25d35aa38ebc38e7b3a629eb.mesh"]
+
+source_file="res://Assets/Models/Terrain/slope-2.obj"
+dest_files=["res://.godot/imported/slope-2.obj-9bbd742a25d35aa38ebc38e7b3a629eb.mesh", "res://.godot/imported/slope-2.obj-9bbd742a25d35aa38ebc38e7b3a629eb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

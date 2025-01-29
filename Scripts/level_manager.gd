@@ -32,6 +32,7 @@ var ball: RigidBody3D = null;
 var camera: CustomCamera = null;
 
 func _ready() -> void:
+	world_environment.environment.fog_enabled = true;
 	ball = player.get_node("%Ball");
 	camera = player.get_node("%Camera");
 	
