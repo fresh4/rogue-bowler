@@ -1,15 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://bn10afwxhar2c"]
+[gd_scene load_steps=20 format=3 uid="uid://bn10afwxhar2c"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_sttxf"]
-[ext_resource type="Texture2D" uid="uid://di0uduo7j2xgb" path="res://Assets/Textures/vaporwave-cross.png" id="2_1byhk"]
 [ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
 [ext_resource type="MeshLibrary" uid="uid://dxb4y04fmy1u7" path="res://gridmap.tres" id="3_ui8bv"]
 [ext_resource type="Script" path="res://Scripts/UI/ui_manager.gd" id="5_2gcxh"]
 [ext_resource type="Theme" uid="uid://cssjhrmxb4sw7" path="res://Assets/Materials/control_theme.tres" id="9_o065w"]
+[ext_resource type="PackedScene" uid="uid://y82ocsb0cksp" path="res://Scenes/object_director.tscn" id="10_b6y4p"]
 [ext_resource type="PackedScene" uid="uid://bnj05b1o6krwy" path="res://Prefabs/pin_spawn_area.tscn" id="10_enx1a"]
 [ext_resource type="Script" path="res://Scripts/UI/start_menu.gd" id="10_xlggv"]
 [ext_resource type="PackedScene" uid="uid://dwfq6esp2sof6" path="res://Scenes/pause_menu.tscn" id="10_ychq2"]
+[ext_resource type="Texture2D" uid="uid://di0uduo7j2xgb" path="res://Assets/Textures/vaporwave-cross.png" id="11_0owf3"]
 [ext_resource type="PackedScene" uid="uid://cyxe6tvwib3ib" path="res://Prefabs/spawn_token.tscn" id="11_u47pg"]
+[ext_resource type="PackedScene" uid="uid://bpbj2811flmmb" path="res://Prefabs/speed_powerup.tscn" id="12_vqycm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x6owf"]
 sky_top_color = Color(0.0627451, 0.027451, 0.129412, 1)
@@ -46,6 +48,22 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkf3y"]
+transparency = 1
+blend_mode = 1
+albedo_texture = ExtResource("11_0owf3")
+emission_enabled = true
+emission = Color(1, 0.396078, 0.807843, 1)
+emission_energy_multiplier = 4.0
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
+proximity_fade_distance = 1304.27
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p6pee"]
+size = Vector2(10000, 10000)
 
 [node name="World" type="Node3D" node_paths=PackedStringArray("player") groups=["LevelManager"]]
 script = ExtResource("1_sttxf")
@@ -257,7 +275,7 @@ text = "PAUSED"
 [node name="Powerups" type="Node3D" parent="."]
 
 [node name="SpawnToken" parent="Powerups" node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
-transform = Transform3D(-0.714885, 0, 0.699243, 0, 1, 0, -0.699243, 0, -0.714885, -10, 0.5, 0)
+transform = Transform3D(0.73119, 0, 0.682174, 0, 1, 0, -0.682174, 0, 0.73119, -10, 0.5, 0)
 pin_spawner = NodePath("../../Pins/PinSpawnArea")
 
 [node name="Pins" type="Node3D" parent="."]
@@ -270,3 +288,16 @@ fill_on_start = false
 [node name="PinSpawnArea3" parent="Pins" instance=ExtResource("10_enx1a")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -184, 100, 0)
 selected_color = "PINK"
+
+[node name="Object Director" parent="." node_paths=PackedStringArray("map_bounds", "player") instance=ExtResource("10_b6y4p")]
+map_bounds = NodePath("../GridMap")
+player = NodePath("../Player")
+
+[node name="HorizonGrid" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0)
+material_override = SubResource("StandardMaterial3D_tkf3y")
+mesh = SubResource("PlaneMesh_p6pee")
+
+[node name="Node3D" parent="." instance=ExtResource("12_vqycm")]
+transform = Transform3D(-0.947814, 0, 0.159411, 0, 1, 0, -0.318823, 0, -0.473907, 0, 1, 7)
+is_rotate = true
