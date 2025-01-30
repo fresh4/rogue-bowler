@@ -274,9 +274,13 @@ text = "PAUSED"
 
 [node name="Powerups" type="Node3D" parent="."]
 
-[node name="SpawnToken" parent="Powerups" node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
-transform = Transform3D(0.73119, 0, 0.682174, 0, 1, 0, -0.682174, 0, 0.73119, -10, 0.5, 0)
+transform = Transform3D(0.852834, 0, -0.522183, 0, 1, 0, 0.522183, 0, 0.852834, -10, 0.5, 0)
 pin_spawner = NodePath("../../Pins/PinSpawnArea")
+
+[node name="SpawnToken2" parent="Powerups" node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.0125357, 0, -0.999922, 0, 1, 0, 0.999922, 0, -0.0125357, -56.7801, -0.573318, 63.3335)
+pin_spawner = NodePath("../../Pins/PinSpawnArea2")
+selected_color = "CYAN"
 
 [node name="Pins" type="Node3D" parent="."]
 
@@ -289,6 +293,96 @@ fill_on_start = false
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -184, 100, 0)
 selected_color = "PINK"
 
+[node name="PinSpawnArea2" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.826344, 0, 0.563166, 0, 1, 0, -0.563166, 0, -0.826344, -83.5304, 0, 138.766)
+fill_on_start = false
+
+[node name="PinSpawnArea4" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.681577, 0, 0.731746, 0, 1, 0, -0.731746, 0, 0.681577, -466.015, 30, -110.72)
+
+[node name="PinSpawnArea5" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -525.198, 30, 193.806)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea6" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.0609092, 0, -0.998143, 0, 1, 0, 0.998143, 0, 0.0609092, -132.156, 30, -76.0067)
+selected_color = "PINK"
+
+[node name="PinSpawnArea9" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -210.48, -29.8019, 346.928)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea10" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.999993, 0, 0.00382227, 0, 1, 0, -0.00382227, 0, -0.999993, -314.633, 80, 135.698)
+
+[node name="PinSpawnArea11" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.908384, 0, -0.418137, 0, 1, 0, 0.418137, 0, 0.908384, -473.112, 80, 72.5607)
+selected_color = "PINK"
+
+[node name="PinSpawnArea12" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -289.693, 90, -49.4614)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea13" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300.528, -10, -194.429)
+fill_on_start = false
+
+[node name="PinSpawnArea15" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -518.676, -9.99998, -23.0766)
+fill_on_start = false
+
+[node name="PinSpawnArea16" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -510.329, -30, -185.779)
+
+[node name="PinSpawnArea17" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -300.984, -30, -242.07)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea18" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.4535, -9.99999, -89.567)
+selected_color = "WHITE"
+fill_on_start = false
+
+[node name="PinSpawnArea8" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.683503, 0, 0.729948, 0, 1, 0, -0.729948, 0, 0.683503, -472.141, 30, -116.447)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea20" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -290.972, 20, -82.6999)
+selected_color = "PINK"
+fill_on_start = false
+
+[node name="PinSpawnArea21" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.474892, 0, 0, 0, 0.474892, 0, 0, 0, 0.474892, -14.3084, 10, -87.6801)
+selected_color = "PINK"
+fill_on_start = false
+
+[node name="PinSpawnArea" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.293, -30, 114.034)
+
+[node name="PinSpawnArea2" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.3964, -28.8285, 335.48)
+selected_color = "PINK"
+
+[node name="PinSpawnArea3" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.0276599, 0, 0.999617, 0, 1, 0, -0.999617, 0, 0.0276599, -254.844, 30, 227.765)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea4" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -570.876, -29.8097, 226.838)
+
+[node name="PinSpawnArea5" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.7785, -10, -195.223)
+fill_on_start = false
+
+[node name="PinSpawnArea6" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.3715, -10, -193.424)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea7" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.0236994, 0, -0.999719, 0, 1, 0, 0.999719, 0, -0.0236994, 26.5455, -30, -246.237)
+selected_color = "PINK"
+=======
 [node name="Object Director" parent="." node_paths=PackedStringArray("map_bounds", "player") instance=ExtResource("10_b6y4p")]
 map_bounds = NodePath("../GridMap")
 player = NodePath("../Player")
