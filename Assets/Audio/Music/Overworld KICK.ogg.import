@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cue3mpa28plgn"
+path="res://.godot/imported/Overworld KICK.ogg-387876d59dc3354df50ebf6913968b60.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Overworld KICK.ogg"
+dest_files=["res://.godot/imported/Overworld KICK.ogg-387876d59dc3354df50ebf6913968b60.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,15 +1,19 @@
 extends Node
 
-enum LAYERS {BASE_TRACK, SPEED_TRACK, PROGRESS_TRACK };
-
 const MUSIC_PLAYER = preload("res://Prefabs/music_player.tscn");
 
 #region Audio Imports
-const OST = preload("res://Assets/Audio/Music/76v4.mp3");
+const PIN_HIT_1 = preload("res://Assets/Audio/SFX/pin_hit_1.ogg")
+const PIN_HIT_2 = preload("res://Assets/Audio/SFX/pin_hit_2.ogg")
+const PIN_HIT_3 = preload("res://Assets/Audio/SFX/pin_hit_3.ogg")
+const PIN_HIT_4 = preload("res://Assets/Audio/SFX/pin_hit_4.ogg")
+const PIN_HIT_5 = preload("res://Assets/Audio/SFX/pin_hit_5.ogg")
+const PIN_HIT_6 = preload("res://Assets/Audio/SFX/pin_hit_6.ogg")
+const PIN_HIT_7 = preload("res://Assets/Audio/SFX/pin_hit_7.ogg")
 
-#const IMPACTS: Array[AudioStream] = [
-
-#]
+const PIN_IMPACTS: Array[AudioStream] = [
+	PIN_HIT_1, PIN_HIT_2, PIN_HIT_3, PIN_HIT_4, PIN_HIT_5, PIN_HIT_6, PIN_HIT_7
+]
 #endregion
 
 var music_volume: float = 0.5;

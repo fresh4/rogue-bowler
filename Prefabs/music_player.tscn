@@ -1,13 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3mo7gylqnag"]
+[gd_scene load_steps=7 format=3 uid="uid://d3mo7gylqnag"]
 
-[ext_resource type="AudioStream" uid="uid://civ8gn54jd4id" path="res://Assets/Audio/Music/76v4.mp3" id="1_r32vq"]
+[ext_resource type="AudioStream" uid="uid://c505smynctnmq" path="res://Assets/Audio/Music/Overworld Main NO DUCKING.ogg" id="1_b7jgr"]
 [ext_resource type="Script" path="res://Scripts/music_player.gd" id="2_472d2"]
+[ext_resource type="AudioStream" uid="uid://vwu2157himfj" path="res://Assets/Audio/Music/Overworld Main DUCKED.ogg" id="2_olrv6"]
+[ext_resource type="AudioStream" uid="uid://cue3mpa28plgn" path="res://Assets/Audio/Music/Overworld KICK.ogg" id="3_gjj40"]
+[ext_resource type="AudioStream" uid="uid://vw08eqnu2yfd" path="res://Assets/Audio/Music/Overworld PERC.ogg" id="4_xjey7"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_5fmrf"]
-stream_count = 2
-stream_0/stream = ExtResource("1_r32vq")
+stream_count = 4
+stream_0/stream = ExtResource("1_b7jgr")
 stream_0/volume = 0.0
-stream_1/volume = 0.0
+stream_1/stream = ExtResource("2_olrv6")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("3_gjj40")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("4_xjey7")
+stream_3/volume = -60.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" groups=["AudioPlayer"]]
 stream = SubResource("AudioStreamSynchronized_5fmrf")

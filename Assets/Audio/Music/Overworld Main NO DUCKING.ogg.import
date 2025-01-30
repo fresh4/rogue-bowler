@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c505smynctnmq"
+path="res://.godot/imported/Overworld Main NO DUCKING.ogg-a4835c005c65db690d5a2cd0e117517c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Overworld Main NO DUCKING.ogg"
+dest_files=["res://.godot/imported/Overworld Main NO DUCKING.ogg-a4835c005c65db690d5a2cd0e117517c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
