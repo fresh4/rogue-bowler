@@ -382,7 +382,7 @@ selected_color = "WHITE"
 [node name="PinSpawnArea7" parent="." instance=ExtResource("10_enx1a")]
 transform = Transform3D(-0.0236994, 0, -0.999719, 0, 1, 0, 0.999719, 0, -0.0236994, 26.5455, -30, -246.237)
 selected_color = "PINK"
-=======
+
 [node name="Object Director" parent="." node_paths=PackedStringArray("map_bounds", "player") instance=ExtResource("10_b6y4p")]
 map_bounds = NodePath("../GridMap")
 player = NodePath("../Player")

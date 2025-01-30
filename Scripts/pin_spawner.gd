@@ -29,7 +29,6 @@ func set_spawner_color() -> void:
 	triangle_mesh.material.emission = color;
 
 func spawn_pins() -> void:
-	print("spawn!")
 	particles.emitting = true;
 	for c in get_children(true): 
 		if c is Pin:
