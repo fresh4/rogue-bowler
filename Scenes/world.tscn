@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bn10afwxhar2c"]
+[gd_scene load_steps=17 format=3 uid="uid://bn10afwxhar2c"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_sttxf"]
 [ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
 [ext_resource type="MeshLibrary" uid="uid://dxb4y04fmy1u7" path="res://gridmap.tres" id="3_ui8bv"]
 [ext_resource type="Script" path="res://Scripts/UI/ui_manager.gd" id="5_2gcxh"]
 [ext_resource type="Theme" uid="uid://cssjhrmxb4sw7" path="res://Assets/Materials/control_theme.tres" id="9_o065w"]
+[ext_resource type="AudioStream" uid="uid://civ8gn54jd4id" path="res://Assets/Audio/Music/76v4.mp3" id="10_cwxnl"]
 [ext_resource type="PackedScene" uid="uid://bnj05b1o6krwy" path="res://Prefabs/pin_spawn_area.tscn" id="10_enx1a"]
 [ext_resource type="Script" path="res://Scripts/UI/start_menu.gd" id="10_xlggv"]
 [ext_resource type="PackedScene" uid="uid://dwfq6esp2sof6" path="res://Scenes/pause_menu.tscn" id="10_ychq2"]
@@ -45,6 +46,12 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_sv56x"]
+stream_count = 2
+stream_0/stream = ExtResource("10_cwxnl")
+stream_0/volume = 0.0
+stream_1/volume = 0.0
 
 [node name="World" type="Node3D" node_paths=PackedStringArray("player") groups=["LevelManager"]]
 script = ExtResource("1_sttxf")
@@ -256,7 +263,7 @@ text = "PAUSED"
 [node name="Powerups" type="Node3D" parent="."]
 
 [node name="SpawnToken" parent="Powerups" node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
-transform = Transform3D(-0.0287603, 0, -0.999587, 0, 1, 0, 0.999587, 0, -0.0287603, -10, 0.5, 0)
+transform = Transform3D(-0.759686, 0, 0.650292, 0, 1, 0, -0.650292, 0, -0.759686, -10, 0.5, 0)
 pin_spawner = NodePath("../../Pins/PinSpawnArea")
 
 [node name="Pins" type="Node3D" parent="."]
@@ -269,3 +276,6 @@ fill_on_start = false
 [node name="PinSpawnArea3" parent="Pins" instance=ExtResource("10_enx1a")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -184, 100, 0)
 selected_color = "PINK"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["AudioPlayer"]]
+stream = SubResource("AudioStreamSynchronized_sv56x")
