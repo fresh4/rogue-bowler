@@ -1,6 +1,6 @@
 extends Node
 
-enum LAYERS {BASE_TRACK};
+enum LAYERS {BASE_TRACK, SPEED_TRACK, PROGRESS_TRACK };
 
 const MUSIC_PLAYER = preload("res://Prefabs/music_player.tscn");
 
@@ -26,7 +26,6 @@ func _ready() -> void:
 	game_music_player.bus = "Music";
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS;
-	
 	
 	add_child(game_music_player);
 	game_music_player.play();

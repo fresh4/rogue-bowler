@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3mo7gylqnag"]
+[gd_scene load_steps=4 format=3 uid="uid://d3mo7gylqnag"]
 
 [ext_resource type="AudioStream" uid="uid://civ8gn54jd4id" path="res://Assets/Audio/Music/76v4.mp3" id="1_r32vq"]
+[ext_resource type="Script" path="res://Scripts/music_player.gd" id="2_472d2"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_5fmrf"]
 stream_count = 2
@@ -10,3 +11,4 @@ stream_1/volume = 0.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" groups=["AudioPlayer"]]
 stream = SubResource("AudioStreamSynchronized_5fmrf")
+script = ExtResource("2_472d2")
