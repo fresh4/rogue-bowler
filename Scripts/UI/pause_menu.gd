@@ -65,6 +65,8 @@ func _on_back_button_pressed():
 		visible = false;
 
 func pause() -> void:
+	music_slider.value = AudioManager.music_volume;
+	sfx_slider.value = AudioManager.sfx_volume;
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE;
 	is_paused = true;
 	
