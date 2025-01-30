@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://vwu2157himfj"
+path="res://.godot/imported/Overworld Main DUCKED.ogg-0d3a190985fc50d488ce78739220262f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Overworld Main DUCKED.ogg"
+dest_files=["res://.godot/imported/Overworld Main DUCKED.ogg-0d3a190985fc50d488ce78739220262f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
