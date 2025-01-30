@@ -1,0 +1,350 @@
+[gd_scene load_steps=21 format=3 uid="uid://bn10afwxhar2c"]
+
+[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_sttxf"]
+[ext_resource type="Texture2D" uid="uid://di0uduo7j2xgb" path="res://Assets/Textures/vaporwave-cross.png" id="2_1byhk"]
+[ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
+[ext_resource type="ArrayMesh" uid="uid://btmfrfideckb" path="res://Assets/Models/Terrain/plane-plain-3cm.obj" id="3_6kd8o"]
+[ext_resource type="Script" path="res://Scripts/UI/ui_manager.gd" id="5_2gcxh"]
+[ext_resource type="MeshLibrary" uid="uid://dxb4y04fmy1u7" path="res://gridmap.tres" id="7_uebtx"]
+[ext_resource type="Script" path="res://Scripts/map_manager.gd" id="8_2occa"]
+[ext_resource type="Theme" uid="uid://cssjhrmxb4sw7" path="res://Assets/Materials/control_theme.tres" id="9_o065w"]
+[ext_resource type="PackedScene" uid="uid://bnj05b1o6krwy" path="res://Prefabs/pin_spawn_area.tscn" id="10_enx1a"]
+[ext_resource type="Script" path="res://Scripts/UI/start_menu.gd" id="10_xlggv"]
+[ext_resource type="PackedScene" uid="uid://dwfq6esp2sof6" path="res://Scenes/pause_menu.tscn" id="10_ychq2"]
+[ext_resource type="PackedScene" uid="uid://cyxe6tvwib3ib" path="res://Prefabs/spawn_token.tscn" id="11_u47pg"]
+[ext_resource type="PackedScene" uid="uid://y82ocsb0cksp" path="res://Scenes/object_director.tscn" id="13_2vv8q"]
+[ext_resource type="PackedScene" uid="uid://xa0ik3awbj8o" path="res://Scenes/power_up.tscn" id="14_mnxmm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x6owf"]
+sky_top_color = Color(0.0627451, 0.027451, 0.129412, 1)
+sky_horizon_color = Color(0.858824, 0.00392157, 0.447059, 1)
+sky_curve = 0.121838
+ground_bottom_color = Color(0.113725, 0, 0.168627, 1)
+ground_horizon_color = Color(0.847059, 0, 0.509804, 1)
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_vsnrb"]
+sky_material = SubResource("ProceduralSkyMaterial_x6owf")
+
+[sub_resource type="Environment" id="Environment_mnx18"]
+background_mode = 2
+sky = SubResource("Sky_vsnrb")
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.129412, 0, 0.172549, 1)
+fog_density = 1.0
+adjustment_enabled = true
+adjustment_saturation = 1.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xx6xu"]
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+albedo_texture = ExtResource("2_1byhk")
+emission_enabled = true
+emission = Color(0.556689, 0.265198, 0.617188, 1)
+emission_energy_multiplier = 3.5
+uv1_offset = Vector3(0, 0, 0.015)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pic8n"]
+bg_color = Color(0.702, 0.255, 0.827, 0.184)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnylh"]
+bg_color = Color(0.702875, 0.255554, 0.828125, 1)
+skew = Vector2(0.3, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="World" type="Node3D" node_paths=PackedStringArray("player") groups=["LevelManager"]]
+script = ExtResource("1_sttxf")
+player = NodePath("Player")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
+environment = SubResource("Environment_mnx18")
+
+[node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_color = Color(0.984131, 0.84375, 1, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="GridLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.900806, 0.126572, 0.925781, 1)
+light_energy = 1.2
+sky_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_ho05h")]
+COLOR_OPTIONS = Array[Color]([Color(0, 0.6, 1, 1), Color(0.0509804, 0.996078, 0.972549, 1)])
+
+[node name="MapManager" type="Node3D" parent="."]
+script = ExtResource("8_2occa")
+
+[node name="CSGGrid" type="CSGCombiner3D" parent="MapManager"]
+unique_name_in_owner = true
+operation = 2
+
+[node name="GridMesh" type="CSGMesh3D" parent="MapManager/CSGGrid"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = ExtResource("3_6kd8o")
+material = SubResource("StandardMaterial3D_xx6xu")
+
+[node name="SubtractionBox" type="CSGBox3D" parent="MapManager/CSGGrid"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+operation = 2
+size = Vector3(300, 20, 300)
+
+[node name="GridMap" type="GridMap" parent="MapManager"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh_library = ExtResource("7_uebtx")
+cell_size = Vector3(30, 2, 30)
+data = {
+"cells": PackedInt32Array(65535, 0, 655360, 65535, 65535, 655360, 0, 65535, 655360, 0, 0, 655360, 65534, 65535, 2, 65533, 0, 6, 65534, 65534, 655364, 65535, 65534, 655361, 0, 65534, 655363, 0, 1, 5, 1, 65534, 1441798, 65535, 1, 1048578, 2, 0, 1441798, 2, 65534, 1441795, 65534, 1, 655366, 65535, 3, 7, 1, 3, 1048582, 65534, 2, 1048577, 65534, 3, 655362, 65533, 2, 1441798, 2, 2, 1441793, 2, 3, 1441792, 65534, 65532, 1441799, 65533, 65532, 1441798, 1, 65532, 655365, 1, 65533, 655360, 2, 65533, 1048582, 2, 65535, 5, 3, 65533, 0, 3, 65532, 655362, 3, 1, 1048579, 3, 3, 1048577, 3, 2, 1048576, 3, 0, 1048576, 65532, 1, 1048583, 65531, 65535, 4, 65532, 2, 655365, 65532, 3, 655360, 65531, 65534, 655360, 65532, 65533, 1048578, 65531, 65532, 6, 65531, 65533, 3, 3, 4, 0, 2, 4, 0, 1, 4, 0, 0, 4, 0, 65535, 4, 0, 65534, 4, 0, 65533, 4, 0, 65532, 4, 0, 65531, 4, 0, 4, 4, 0, 4, 3, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 4, 65535, 0, 4, 65534, 0, 4, 65533, 0, 4, 65532, 0, 4, 65531, 0, 3, 65531, 0, 2, 65531, 0, 1, 65531, 0, 0, 65531, 0, 65535, 65531, 0, 65534, 65531, 0, 65533, 65531, 0, 65532, 65531, 0, 65531, 65531, 0)
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="GameUI" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_2gcxh")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/GameUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_o065w")
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="GameTimerLabel" type="Label" parent="UI/GameUI/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "5:00"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameUI/MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreRow" type="HSplitContainer" parent="UI/GameUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UI/GameUI/MarginContainer/VBoxContainer/ScoreRow"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Score: "
+
+[node name="ScoreValue" type="Label" parent="UI/GameUI/MarginContainer/VBoxContainer/ScoreRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "0"
+
+[node name="ComboRow" type="HSplitContainer" parent="UI/GameUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ComboLabel" type="Label" parent="UI/GameUI/MarginContainer/VBoxContainer/ComboRow"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "COMBO"
+
+[node name="ComboValue" type="Label" parent="UI/GameUI/MarginContainer/VBoxContainer/ComboRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "STRIKE"
+
+[node name="TimerContainer" type="Control" parent="UI/GameUI/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="TimerSlider" type="ProgressBar" parent="UI/GameUI/MarginContainer/VBoxContainer/TimerContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(160, 5)
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 5.0
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_pic8n")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dnylh")
+value = 17.4
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ScorecardRows" type="VBoxContainer" parent="UI/GameUI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_constants/separation = -2
+
+[node name="FPS" type="Label" parent="UI/GameUI/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "60"
+
+[node name="StartMenu" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_o065w")
+script = ExtResource("10_xlggv")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/StartMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/StartMenu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="UI/StartMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "HYPERBOWL"
+
+[node name="StartButton" type="Button" parent="UI/StartMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Start"
+flat = true
+
+[node name="SettingsButton" type="Button" parent="UI/StartMenu/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Settings"
+flat = true
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("10_ychq2")]
+visible = false
+
+[node name="PAUSED" type="Label" parent="UI/PauseMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.5
+offset_right = 140.5
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "PAUSED"
+
+[node name="PinSpawnArea" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 0, 0)
+selected_color = "WHITE"
+fill_on_start = false
+
+[node name="PinSpawnArea3" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -27, 0, -27)
+
+[node name="SpawnToken" parent="." node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.0294914, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0294914, -5, 0.5, 0)
+pin_spawner = NodePath("../PinSpawnArea")
+
+[node name="PinSpawnArea2" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 13.7, -93)
+selected_color = "PINK"
+fill_on_start = false
+
+[node name="PinSpawnArea4" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.0115879, -0.00513906, -0.99992, 0.00602813, 0.999968, -0.00520917, 0.999915, -0.00608801, -0.0115565, 0, 13.7, 86)
+fill_on_start = false
+
+[node name="PinSpawnArea6" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, 72, 0, 102)
+selected_color = "PINK"
+
+[node name="PinSpawnArea5" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 13.694, 27)
+
+[node name="SpawnToken2" parent="." node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.282957, 0, 0.959133, 0, 1, 0, -0.959133, 0, 0.282957, -15, 17.5, -54)
+pin_spawner = NodePath("../PinSpawnArea2")
+selected_color = "PINK"
+
+[node name="SpawnToken3" parent="." node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.964772, 0, 0.263091, 0, 1, 0, -0.263091, 0, 0.964772, -14, 14.5, 58)
+pin_spawner = NodePath("../PinSpawnArea4")
+selected_color = "CYAN"
+
+[node name="PinSpawnArea7" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, -83)
+
+[node name="PinSpawnArea8" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -57, 0, 88)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea9" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -91, 0, 1)
+selected_color = "PINK"
+
+[node name="SpawnToken4" parent="." node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.881793, 0, -0.471638, 0, 1, 0, 0.471638, 0, -0.881793, -109, 13.5, 2)
+pin_spawner = NodePath("../PinSpawnArea5")
+selected_color = "CYAN"
+
+[node name="PinSpawnArea10" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -132, 0, -47)
+selected_color = "WHITE"
+
+[node name="PinSpawnArea11" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 122, 0, 118)
+
+[node name="Object Director" parent="." instance=ExtResource("13_2vv8q")]
+metadata/power_up = ExtResource("14_mnxmm")

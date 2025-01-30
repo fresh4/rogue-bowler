@@ -2,6 +2,8 @@ class_name Pin extends RigidBody3D
 
 signal pin_knocked_over;
 
+@onready var mesh: MeshInstance3D = %Mesh
+
 var is_knocked: bool = false;
 
 func _physics_process(_delta: float) -> void:
@@ -11,3 +13,6 @@ func _physics_process(_delta: float) -> void:
 
 func check_knocked() -> bool:
 	return abs(rotation_degrees.x) > 45 or abs(rotation_degrees.z) > 45;
+
+func set_pin_color(value: Color) -> void:
+	mesh.material_override.emission = value;

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://uiy6vrlynwvw"
+path="res://.godot/imported/bowling-pin.obj-5e8f970ed6ba0be46d506e448552fb3d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/bowling-pin.obj-5e8f970ed6ba0be46d506e448552fb3d.mesh"]
+
+source_file="res://Assets/Models/Pin/bowling-pin.obj"
+dest_files=["res://.godot/imported/bowling-pin.obj-5e8f970ed6ba0be46d506e448552fb3d.mesh", "res://.godot/imported/bowling-pin.obj-5e8f970ed6ba0be46d506e448552fb3d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

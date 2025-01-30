@@ -1,5 +1,14 @@
 extends Node
 
+const PINK: Color = Color(1, 0.027, 0.753, 1); 
+const CYAN: Color = Color(0.051, 0.996, 0.973, 1);
+const WHITE: Color = Color.WHITE;
+
+var is_look_inverted: bool = false;
+var is_visualizer_disabled: bool = false;
+var camera_sensitivity_setting: float = 1;
+var is_game_started: bool = false;
+
 func freeze_frame(timescale: float, duration: float) -> void:
 	# Function that 'stops' time for a very brief moment.
 	# Timescale is how slow you want the game to run (0.5 for half speed etc)
