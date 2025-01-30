@@ -1,5 +1,9 @@
 extends Node
 
+enum LAYERS {BASE_TRACK};
+
+const MUSIC_PLAYER = preload("res://Prefabs/music_player.tscn");
+
 #region Audio Imports
 const OST = preload("res://Assets/Audio/Music/76v4.mp3");
 
@@ -8,6 +12,9 @@ const OST = preload("res://Assets/Audio/Music/76v4.mp3");
 #]
 #endregion
 
+var music_volume: float = 0.5;
+var sfx_volume: float = 0.5;
+
 var menu_music_player: AudioStreamPlayer;
 var game_music_player: AudioStreamPlayer;
 
@@ -15,19 +22,16 @@ var current_player: AudioStreamPlayer = null;
 var tween: Tween;
 
 func _ready() -> void:
-	game_music_player = get_tree().get_first_node_in_group("AudioPlayer") as AudioStreamPlayer;
+	game_music_player = MUSIC_PLAYER.instantiate() as AudioStreamPlayer;
 	game_music_player.bus = "Music";
-	#game_music_player.stream = AudioStreamSynchronized.new();
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS;
 	
-	set_volume("Music", 0.5);
-	set_volume("SFX", 0.5);
+	set_volume("Music", music_volume);
+	set_volume("SFX", sfx_volume);
 	
-	#add_child(game_music_player);
-	#game_music_player.stream.set_sync_stream(0, OST);
+	add_child(game_music_player);
 	game_music_player.play();
-
 
 func initialize_player(stream: Resource) -> AudioStreamPlayer:
 	var player = AudioStreamPlayer.new();

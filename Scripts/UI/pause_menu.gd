@@ -22,14 +22,14 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back_button_pressed);
 	
 	# Set default settings and sync with slider values
-	music_slider.value = 0.5;
+	music_slider.value = AudioManager.music_volume;
 	music_slider.value_changed.emit(music_slider.value);
 	
-	sfx_slider.value = 0.5;
+	sfx_slider.value = AudioManager.sfx_volume;
 	sfx_slider.value_changed.emit(sfx_slider.value);
 	
-	sensitivity_slider.value = 0.5;
-	sensitivity_slider.value_changed.emit(sensitivity_slider.value);
+	sensitivity_slider.value = Globals.camera_sensitivity_setting;
+	#sensitivity_slider.value_changed.emit(sensitivity_slider.value);
 
 func _input(event: InputEvent) -> void:
 	if not Globals.is_game_started: return;
@@ -48,9 +48,11 @@ func _on_toggle_visualizer():
 	Globals.is_visualizer_disabled = !Globals.is_visualizer_disabled;
 
 func _on_music_slider_changed(value):
+	AudioManager.music_volume = value;
 	AudioManager.set_volume("Music", value);
 
 func _on_sfx_slider_changed(value):
+	AudioManager.sfx_volume = value;
 	AudioManager.set_volume("SFX", value);
 
 func _on_sensitivity_slider_changed(value):
