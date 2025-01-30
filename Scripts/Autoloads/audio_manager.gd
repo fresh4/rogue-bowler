@@ -27,8 +27,6 @@ func _ready() -> void:
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS;
 	
-	set_volume("Music", music_volume);
-	set_volume("SFX", sfx_volume);
 	
 	add_child(game_music_player);
 	game_music_player.play();

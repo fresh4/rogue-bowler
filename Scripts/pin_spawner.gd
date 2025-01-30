@@ -6,6 +6,7 @@ class_name PinSpawner extends Node3D
 @export var fill_on_start: bool = true;
 
 @onready var pins_scene = preload("res://Prefabs/pin_group.tscn");
+@onready var particles: CPUParticles3D = %Particles
 
 var color: Color; ## The color of the spawner, set in the inspector by `selected_color`.
 var has_pins: bool = false; ## Whether or not the spawner has pins spawned in it.
@@ -28,7 +29,11 @@ func set_spawner_color() -> void:
 	triangle_mesh.material.emission = color;
 
 func spawn_pins() -> void:
-	for c in get_children(): c.queue_free(); # Delete any pins if they exist.
+	print("spawn!")
+	particles.emitting = true;
+	for c in get_children(true): 
+		if c is Pin:
+			c.queue_free(); # Delete any pins if they exist.
 	var pins = pins_scene.instantiate();
 	add_child(pins);
 	for pin in pins.get_children():
