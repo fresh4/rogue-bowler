@@ -37,6 +37,7 @@ func _ready() -> void:
 	camera = player.get_node("%Camera");
 	
 	ball.body_entered.connect(_on_ball_hit_pins);
+	g_timer.timeout.connect(game_ended.emit);
 	
 	# Init frames
 	for i in range(10):
@@ -54,25 +55,13 @@ func _ready() -> void:
 	add_child(g_timer);
 
 func _physics_process(delta: float) -> void:
-	horizon_beat_visualizer(delta);
+	Globals.visualizer(delta, world_environment, "environment:background_energy_multiplier", 1, 2, 0.1, 1.65);
 
 func start_game() -> void:
 	player.animator.play("Start");
 	await player.animator.animation_finished;
 	Globals.is_game_started = true;
 	g_timer.start();
-
-func horizon_beat_visualizer(delta: float) -> void:
-	if Globals.is_visualizer_disabled: return
-	if not AudioManager.game_music_player.playing: return;
-	var spectrum: AudioEffectSpectrumAnalyzerInstance = AudioServer.get_bus_effect_instance(1,0);
-	var volume = spectrum.get_magnitude_for_frequency_range(100, 250).length();
-	var bg_energy: float = world_environment.environment.background_energy_multiplier;
-	if bg_energy > 1:
-		bg_energy -= delta*2;
-	elif bg_energy < 2 and volume > 0.3:
-		bg_energy = 5 * volume;
-	world_environment.environment.background_energy_multiplier = clampf(bg_energy, 0.1, 1.65);
 
 func _on_ball_hit_pins(body: Node3D) -> void:
 	if not body is Pin: return;
@@ -119,7 +108,6 @@ func calculate_score() -> void:
 		update_frames(frame_score, "/");
 		progress_to_next_frame();
 		return;
-		# TODO: Modify score
 	
 	# Progress to next frame if we've made two throws this frame, regardless of final score.
 	if current_throw >= 2:
@@ -146,6 +134,7 @@ func progress_to_next_frame() -> void:
 			game_ended.emit();
 
 func _on_pin_knocked_over(pin: Pin) -> void:
+	if c_timer.is_stopped(): return; # TODO: Confirm if helps
 	if pin not in knocked_pins:
 		knocked_pins.append(pin);
 	if pin not in combo_pins:

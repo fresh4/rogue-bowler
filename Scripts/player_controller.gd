@@ -18,9 +18,10 @@ class_name Player extends Node3D
 var forward: Vector3 = Vector3.ZERO; ## The calculated forward direction, based on direction of camera.
 var default_camera_orientation: Vector3;
 var last_frames_velocity: Vector3 = Vector3.ZERO;
-var initial_camera_pos: Vector3 = Vector3(0,1,3);
+var level_manager: LevelManager;
 
 func _ready() -> void:
+	level_manager = get_tree().get_first_node_in_group("LevelManager");
 	animator.pause();
 	set_emission(COLOR_OPTIONS[0]);
 	camera.fov = BASE_FOV;
@@ -30,10 +31,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Reset camera's (parent) position to follow ball.
 	camera_pivot.global_position = ball.global_position;
-	if camera.position != initial_camera_pos: initial_camera_pos = initial_camera_pos;
 
 func _physics_process(delta: float) -> void:
-	ball_beat_visualizer(delta);
+	Globals.visualizer(delta, mesh, "material_override:emission_energy_multiplier", 2, 4, 2, 2.5);
 	if not Globals.is_game_started: return;
 	# Store the previous frame's velocity for calulating velocity on impacts.
 	last_frames_velocity = ball.linear_velocity;
@@ -50,6 +50,8 @@ func _physics_process(delta: float) -> void:
 	ball.angular_velocity.z = clampf(ball.angular_velocity.z, -MAX_SPEED, MAX_SPEED);
 	handle_input();
 	offset_camera();
+	
+	if ball.global_position.y < -40: ball.global_position = Vector3(0, 10, 0);
 
 func _input(event: InputEvent) -> void:
 	if not Globals.is_game_started: return;
@@ -61,23 +63,9 @@ func _input(event: InputEvent) -> void:
 			reset_camera();
 	
 	# Rotate the camera if key is held and mouse is in motion.
-	if event is InputEventMouseMotion:# and Input.is_action_pressed("rotate_camera"):
+	if event is InputEventMouseMotion:
 		var invert = 1 if Globals.is_look_inverted else -1;
 		camera_pivot.rotate(Vector3(0,1,0), invert * event.relative.x * camera.camera_rotation_speed * Globals.camera_sensitivity_setting);
-
-func ball_beat_visualizer(delta: float) -> void:
-	if Globals.is_visualizer_disabled: return
-	if not AudioManager.game_music_player.playing: return;
-	
-	var spectrum: AudioEffectSpectrumAnalyzerInstance = AudioServer.get_bus_effect_instance(1,0);
-	var volume = spectrum.get_magnitude_for_frequency_range(100, 250).length();
-	var bg_energy: float = mesh.material_override.emission_energy_multiplier;
-	
-	if bg_energy > 2:
-		bg_energy -= delta*2;
-	elif bg_energy < 4 and volume > 0.3:
-		bg_energy = 5 * volume;
-	mesh.material_override.emission_energy_multiplier = clampf(bg_energy, 2, 2.5);
 
 func move(dir) -> void:
 	# Push the ball by applying torque along a direction at a passed in rate.
