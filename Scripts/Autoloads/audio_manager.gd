@@ -90,9 +90,13 @@ func play_audio(file: AudioStream, mixer: String = "SFX", volume: float = 1) -> 
 	remove_child(audio_player);
 	audio_player.queue_free();
 
-func play_random(list: Array[AudioStream]) -> void:
+func play_random(list: Array[AudioStream], player: AudioStreamPlayer3D = null) -> void:
 	var track = list.pick_random();
-	play_audio(track);
+	if player:
+		player.stream = track;
+		player.play();
+	else:
+		play_audio(track);
 
 #func on_scene_changed() -> void:
 	## Automatically handle audio shifting based on the current scene
