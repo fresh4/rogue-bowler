@@ -30,7 +30,7 @@ top_radius = 1.0
 bottom_radius = 1.0
 
 [sub_resource type="Curve" id="Curve_x7aer"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.231834, 0.325386), 0.0, 0.0, 0, 0, Vector2(0.394464, 0.699158), 0.0, 0.0, 0, 0, Vector2(0.525952, 0.370968), 0.0, 0.0, 0, 0, Vector2(0.688581, 0.680926), 0.0, 0.0, 0, 0, Vector2(0.806228, 0.28892), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.183391, 0.607994), 0.0, 0.0, 0, 0, Vector2(0.387543, 0.835905), 0.0, 0.0, 0, 0, Vector2(0.532872, 0.51683), 0.0, 0.0, 0, 0, Vector2(0.674741, 0.699158), 0.0, 0.0, 0, 0, Vector2(0.820069, 0.407433), 0.0, 0.0, 0, 0]
 point_count = 6
 
 [node name="PinSpawnArea" type="Node3D" node_paths=PackedStringArray("triangle_mesh") groups=["PinSpawners"]]
@@ -61,8 +61,8 @@ unique_name_in_owner = true
 material_override = SubResource("StandardMaterial3D_fdsvs")
 emitting = false
 amount = 50
-lifetime = 0.5
 one_shot = true
+lifetime_randomness = 0.09
 mesh = SubResource("CylinderMesh_wnwej")
 direction = Vector3(0, 1, 0)
 spread = 0.0
