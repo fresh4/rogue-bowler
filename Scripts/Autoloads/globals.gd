@@ -6,7 +6,7 @@ const WHITE: Color = Color.WHITE;
 
 var is_look_inverted: bool = false;
 var is_visualizer_disabled: bool = false;
-var camera_sensitivity_setting: float = 1;
+var camera_sensitivity_setting: float = 0.45;
 var is_game_started: bool = false;
 
 func freeze_frame(timescale: float, duration: float) -> void:
