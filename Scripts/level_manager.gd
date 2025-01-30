@@ -134,6 +134,7 @@ func progress_to_next_frame() -> void:
 			game_ended.emit();
 
 func _on_pin_knocked_over(pin: Pin) -> void:
+	AudioManager.play_random(AudioManager.PIN_IMPACTS, pin.audio_player);
 	if c_timer.is_stopped(): return; # TODO: Confirm if helps
 	if pin not in knocked_pins:
 		knocked_pins.append(pin);

@@ -3,6 +3,7 @@ class_name Pin extends RigidBody3D
 signal pin_knocked_over;
 
 @onready var mesh: MeshInstance3D = %Mesh
+@onready var audio_player: AudioStreamPlayer3D = %AudioPlayer
 
 var is_knocked: bool = false;
 
@@ -16,3 +17,8 @@ func check_knocked() -> bool:
 
 func set_pin_color(value: Color) -> void:
 	mesh.material_override.emission = value;
+
+func _on_body_entered(body: Node) -> void:
+	if not (body is Player or body is Pin): return;
+	if body is Pin and is_knocked: return;
+	AudioManager.play_random(AudioManager.PIN_IMPACTS, audio_player);
