@@ -9,17 +9,18 @@ signal selection_changed;
 
 @export var is_rotate: bool = true;
 @export var detection_area: Area3D;
+@export var mesh: MeshInstance3D;
+
 @export_enum("PINK", "CYAN", "WHITE") var selected_color: String :
 	set(value): selected_color = value; _on_selection_changed();
 
-var mesh: MeshInstance3D;
 
 func _ready() -> void:
 	selection_changed.connect(_on_selection_changed);
 	detection_area.body_entered.connect(activate);
-	for child in get_children():
-		if child is MeshInstance3D:
-			mesh = child;
+	
+	detection_area.set_collision_mask_value(2, true);
+	detection_area.set_collision_mask_value(1, false);
 	_on_selection_changed();
 
 func _physics_process(delta: float) -> void:

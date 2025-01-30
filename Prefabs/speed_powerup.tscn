@@ -6,8 +6,9 @@
 size = Vector3(0.05, 1, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iiav2"]
+albedo_color = Color(0.051, 0.996, 0.973, 1)
 emission_enabled = true
-emission = Color(0.0878906, 0.9375, 0.837936, 1)
+emission = Color(0.051, 0.996, 0.973, 1)
 emission_energy_multiplier = 2.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ibwg8"]
@@ -26,11 +27,13 @@ _surfaces = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_wcvq4"]
 size = Vector3(0.05, 1, 1.5)
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("detection_area")]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("detection_area", "mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 1, 0)
 script = ExtResource("1_7gccr")
 is_rotate = false
 detection_area = NodePath("Area3D")
+mesh = NodePath("MeshInstance3D/MeshInstance3D")
+selected_color = "CYAN"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_syvm0")
