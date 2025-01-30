@@ -30,6 +30,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Reset camera's (parent) position to follow ball.
 	camera_pivot.global_position = ball.global_position;
+	if camera.position != initial_camera_pos: initial_camera_pos = initial_camera_pos;
 
 func _physics_process(_delta: float) -> void:
 	if not Globals.is_game_started: return;

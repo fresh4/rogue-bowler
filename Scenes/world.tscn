@@ -1,6 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://bn10afwxhar2c"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_sttxf"]
+[ext_resource type="Texture2D" uid="uid://di0uduo7j2xgb" path="res://Assets/Textures/vaporwave-cross.png" id="2_1byhk"]
 [ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
 [ext_resource type="MeshLibrary" uid="uid://dxb4y04fmy1u7" path="res://gridmap.tres" id="3_ui8bv"]
 [ext_resource type="Script" path="res://Scripts/UI/ui_manager.gd" id="5_2gcxh"]

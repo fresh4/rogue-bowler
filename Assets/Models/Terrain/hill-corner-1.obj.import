@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bpm5jeq4h8t2x"
+path="res://.godot/imported/hill-corner-1.obj-9758129a26cd20234d006d86d7e449a3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hill-corner-1.obj-9758129a26cd20234d006d86d7e449a3.mesh"]
+
+source_file="res://Assets/Models/Terrain/hill-corner-1.obj"
+dest_files=["res://.godot/imported/hill-corner-1.obj-9758129a26cd20234d006d86d7e449a3.mesh", "res://.godot/imported/hill-corner-1.obj-9758129a26cd20234d006d86d7e449a3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

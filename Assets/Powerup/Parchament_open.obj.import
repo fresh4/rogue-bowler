@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cvo7cq61vdx1d"
+path="res://.godot/imported/Parchament_open.obj-17b0a34dc60a0f800a83d45b9c4fa136.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Parchament_open.obj-17b0a34dc60a0f800a83d45b9c4fa136.mesh"]
+
+source_file="res://Assets/Powerup/Parchament_open.obj"
+dest_files=["res://.godot/imported/Parchament_open.obj-17b0a34dc60a0f800a83d45b9c4fa136.mesh", "res://.godot/imported/Parchament_open.obj-17b0a34dc60a0f800a83d45b9c4fa136.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
