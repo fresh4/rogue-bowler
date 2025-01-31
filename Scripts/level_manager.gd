@@ -71,6 +71,10 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 	
 	if body.is_knocked: return;
 	
+	AudioManager.play_audio(AudioManager.BALL_IMPACT_PINS);
+	#AudioManager.play_audio(AudioManager.BASS_IMPACT);
+	AudioManager.play_audio(AudioManager.IMPACT_TONE);
+	
 	Globals.freeze_frame(0.35, 0.5);
 	camera._camera_shake(0.1, 0.1);
 	

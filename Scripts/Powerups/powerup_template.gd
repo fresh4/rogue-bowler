@@ -18,6 +18,7 @@ signal selection_changed;
 func _ready() -> void:
 	selection_changed.connect(_on_selection_changed);
 	detection_area.body_entered.connect(activate);
+	detection_area.body_entered.connect(global_activate);
 	
 	detection_area.set_collision_mask_value(2, true);
 	detection_area.set_collision_mask_value(1, false);
@@ -32,6 +33,10 @@ func _physics_process(delta: float) -> void:
 func activate(_body: RigidBody3D) -> void:
 	# Override this in extended class
 	pass
+
+func global_activate(_body: RigidBody3D) -> void:
+	# Do NOT override unless necessary
+	AudioManager.play_audio(AudioManager.POWERUP_PICKUP);
 
 func _on_selection_changed() -> void:
 	if not mesh or not mesh.material_override: return;

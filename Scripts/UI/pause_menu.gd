@@ -76,6 +76,10 @@ func pause() -> void:
 	tween.tween_property(bg, "color:a", 0.75, 0.25);
 	get_tree().paused = is_paused;
 	visible = true;
+	
+	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK, 0);
+	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK_DUCKED, -60);
+	
 
 func unpause() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
@@ -83,3 +87,5 @@ func unpause() -> void:
 	get_tree().paused = is_paused;
 	bg.color.a = 0;
 	visible = false;
+	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK, -60);
+	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0);
