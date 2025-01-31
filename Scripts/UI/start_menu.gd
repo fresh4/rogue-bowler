@@ -31,7 +31,7 @@ func _on_start_button_pressed() -> void:
 	
 	# TODO: Bandaid, put this elsewhere.
 	fade_track(AudioManager.LAYERS.MENU_TRACK, -60, 3);
-	fade_track(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0, 1);
+	fade_track(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0, 4);
 	
 	visible = false;
 	modulate = Color(1,1,1,1);
