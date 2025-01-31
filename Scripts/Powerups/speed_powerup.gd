@@ -6,7 +6,7 @@ var base_acc;
 
 func activate(_body: RigidBody3D) -> void:
 	visible = false; 
-	detection_area.monitoring = false;
+	detection_area.set_deferred("monitoring", false);
 	base_speed = player.MAX_SPEED;
 	base_acc = player.ACC_RATE;
 	
