@@ -118,7 +118,7 @@ func set_emission(color: Color) -> void:
 
 func _on_hit_ground(body: Node3D) -> void:
 	if body is not GridMap: return;
-	if last_frames_velocity.y < -8:
+	if last_frames_velocity.y < -10:
 		AudioManager.play_audio(AudioManager.BALL_IMPACT_PINS);
 		camera._camera_shake(0.1, 0.075);
 		#Globals.freeze_frame(0.4, 0.25);
