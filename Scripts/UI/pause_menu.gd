@@ -77,6 +77,7 @@ func pause() -> void:
 	get_tree().paused = is_paused;
 	visible = true;
 	
+	# TODO: Bandaid, put this elsewhere.
 	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK, 0);
 	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK_DUCKED, -60);
 	
@@ -87,5 +88,7 @@ func unpause() -> void:
 	get_tree().paused = is_paused;
 	bg.color.a = 0;
 	visible = false;
+	
+	# TODO: Bandaid, put this elsewhere.
 	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK, -60);
 	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0);

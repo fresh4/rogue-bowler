@@ -18,7 +18,10 @@ func handle_conditional_music() -> void:
 	var kick_volume: float = linear_to_db(clampf(v/20, 0, 1));
 	var perc_volume: float = linear_to_db(clampf(v/30, 0, 1));
 	
-	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.KICK_TRACK, kick_volume);
-	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.PERC_TRACK, perc_volume);
+	set_stream_volume(AudioManager.LAYERS.KICK_TRACK, kick_volume);
+	set_stream_volume(AudioManager.LAYERS.PERC_TRACK, perc_volume);
 	
 	# TODO: Should handle the logic for setting the ducking tracks but no time, basing it on paused.
+
+func set_stream_volume(idx, vol) -> void:
+	AudioManager.game_music_player.stream.set_sync_stream_volume(idx, vol);

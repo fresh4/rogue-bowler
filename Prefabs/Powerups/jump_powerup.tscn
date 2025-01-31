@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0c7ecoip71d5"]
+
+[ext_resource type="Script" path="res://Scripts/Powerups/jump_powerup.gd" id="1_oqne2"]
+[ext_resource type="ArrayMesh" uid="uid://kgbgf0b0jiyt" path="res://Assets/Models/Powerups/jump.obj" id="2_s6yvd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8mjw"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tpvna"]
+points = PackedVector3Array(26.2896, 10, -0.0089035, -26.2947, 10, -0.0089035, 26.2896, 0, -0.0089035, 22.7222, 10, -68.2737, -26.2947, 0, -0.0089035, -22.7274, 10, -68.2737, 22.7222, 0, -68.2737, 19.6799, 10, -79.6393, -22.7274, 0, -68.2737, -19.685, 10, -79.6393, 19.6799, 0, -79.6393, 11.3611, 10, -87.9586, -19.685, 0, -79.6393, -11.3662, 10, -87.9586, 11.3611, 0, -87.9586, -0.00514603, 10, -90.9959, -11.3662, 0, -87.9586, -0.00514603, 0, -90.9959)
+
+[node name="JumpPowerup" type="Node3D" node_paths=PackedStringArray("detection_area", "mesh")]
+transform = Transform3D(0.109703, -0.224645, 9.81952e-09, 0, -1.09278e-08, -0.25, 0.224645, 0.109703, -4.79529e-09, 0, 0, 0)
+script = ExtResource("1_oqne2")
+jump_power = null
+detection_area = NodePath("Area3D")
+mesh = NodePath("Jump")
+selected_color = "WHITE"
+
+[node name="Jump" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_y8mjw")
+mesh = ExtResource("2_s6yvd")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_tpvna")

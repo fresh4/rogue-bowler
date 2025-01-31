@@ -14,8 +14,14 @@ signal selection_changed;
 @export_enum("PINK", "CYAN", "WHITE") var selected_color: String :
 	set(value): selected_color = value; _on_selection_changed();
 
+var player: Player;
+var level_manager: LevelManager;
 
 func _ready() -> void:
+	if not Engine.is_editor_hint():
+		level_manager = get_tree().get_first_node_in_group("LevelManager") as LevelManager;
+		player = level_manager.player;
+	
 	selection_changed.connect(_on_selection_changed);
 	detection_area.body_entered.connect(activate);
 	detection_area.body_entered.connect(global_activate);

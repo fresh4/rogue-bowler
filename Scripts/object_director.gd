@@ -31,7 +31,7 @@ func wait_for_world():
 	initialize_director()
 
 func initialize_director():
-	map_bounds = get_node_or_null("/root/World/MapManager/GridMap")
+	map_bounds = get_node_or_null("/root/World/GridMap")
 	player = get_node_or_null("/root/World/Player")
 
 	if not map_bounds or not player:
@@ -65,7 +65,9 @@ func spawn_powerup():
 	if spawn_location == Vector3.ZERO:
 		print("No valid spawn location found.")
 		return
-
+	if not powerup_scene: 
+		print("No powerup passed in.")
+		return
 	var powerup = powerup_scene.instantiate()
 	powerup.position = spawn_location
 	get_tree().current_scene.add_child(powerup)
