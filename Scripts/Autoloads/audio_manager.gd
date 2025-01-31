@@ -1,6 +1,6 @@
 extends Node
 
-enum LAYERS {BASE_TRACK, BASE_TRACK_DUCKED, KICK_TRACK, PERC_TRACK };
+enum LAYERS {BASE_TRACK, BASE_TRACK_DUCKED, KICK_TRACK, PERC_TRACK, MENU_TRACK};
 
 const MUSIC_PLAYER = preload("res://Prefabs/music_player.tscn");
 

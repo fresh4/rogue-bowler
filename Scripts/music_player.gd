@@ -1,6 +1,5 @@
 extends AudioStreamPlayer
 
-
 var level_manager: LevelManager;
 var player: Player;
 var is_fading: bool = false;
