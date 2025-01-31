@@ -28,6 +28,11 @@ func _on_start_button_pressed() -> void:
 	var tween = get_tree().create_tween();
 	tween.tween_property(self, "modulate", Color(1,1,1,0), 1);
 	await tween.finished;
+	
+	# TODO: Bandaid, put this elsewhere.
+	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK, -60);
+	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0);
+	
 	visible = false;
 	modulate = Color(1,1,1,1);
 	level_manager.start_game();
