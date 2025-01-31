@@ -145,4 +145,3 @@ func _on_pin_knocked_over(pin: Pin) -> void:
 	if pin not in combo_pins:
 		combo_pins.append(pin);
 		combo_updated.emit(len(combo_pins));
-		c_timer.wait_time += 0.1;
