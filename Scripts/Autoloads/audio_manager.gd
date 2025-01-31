@@ -1,5 +1,7 @@
 extends Node
 
+enum LAYERS {BASE_TRACK, BASE_TRACK_DUCKED, KICK_TRACK, PERC_TRACK };
+
 const MUSIC_PLAYER = preload("res://Prefabs/music_player.tscn");
 
 #region Audio Imports
@@ -10,6 +12,11 @@ const PIN_HIT_4 = preload("res://Assets/Audio/SFX/pin_hit_4.ogg")
 const PIN_HIT_5 = preload("res://Assets/Audio/SFX/pin_hit_5.ogg")
 const PIN_HIT_6 = preload("res://Assets/Audio/SFX/pin_hit_6.ogg")
 const PIN_HIT_7 = preload("res://Assets/Audio/SFX/pin_hit_7.ogg")
+
+const BALL_IMPACT_PINS = preload("res://Assets/Audio/SFX/ball-impact-pins.ogg")
+const POWERUP_PICKUP = preload("res://Assets/Audio/SFX/powerup pickup.ogg")
+const BASS_IMPACT = preload("res://Assets/Audio/SFX/bass impact.ogg")
+const IMPACT_TONE = preload("res://Assets/Audio/SFX/impact-tone.ogg")
 
 const PIN_IMPACTS: Array[AudioStream] = [
 	PIN_HIT_1, PIN_HIT_2, PIN_HIT_3, PIN_HIT_4, PIN_HIT_5, PIN_HIT_6, PIN_HIT_7

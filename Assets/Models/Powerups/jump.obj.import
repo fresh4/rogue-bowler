@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://kgbgf0b0jiyt"
+path="res://.godot/imported/jump.obj-51ead0dbd7ef8c5e54c96f2c6fef14aa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/jump.obj-51ead0dbd7ef8c5e54c96f2c6fef14aa.mesh"]
+
+source_file="res://Assets/Models/Powerups/jump.obj"
+dest_files=["res://.godot/imported/jump.obj-51ead0dbd7ef8c5e54c96f2c6fef14aa.mesh", "res://.godot/imported/jump.obj-51ead0dbd7ef8c5e54c96f2c6fef14aa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

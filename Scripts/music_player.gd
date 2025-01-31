@@ -1,12 +1,14 @@
 extends AudioStreamPlayer
 
-enum LAYERS {BASE_TRACK, BASE_TRACK_DUCKED, KICK_TRACK, PERC_TRACK };
 
 var level_manager: LevelManager;
 var player: Player;
-#var min_kick_speed: float = 
+var is_fading: bool = false;
 
 func _ready() -> void:
+	init()
+
+func init():
 	level_manager = get_tree().get_first_node_in_group("LevelManager") as LevelManager;
 	player = level_manager.player;
 
@@ -15,16 +17,15 @@ func _process(_delta: float) -> void:
 
 func handle_conditional_music() -> void:
 	## Handle volume for the velocity conditional audio tracks.
+	if not player: init();
 	var v = player.ball.linear_velocity.length();
 	var kick_volume: float = linear_to_db(clampf(v/20, 0, 1));
 	var perc_volume: float = linear_to_db(clampf(v/30, 0, 1));
-	var duck_volume: float = linear_to_db(clampf(v/5, 0, 1));
-	var noduck_volume: float =  linear_to_db(1 - clampf(v/5, 0, 1));
 	
-	AudioManager.game_music_player.stream.set_sync_stream_volume(LAYERS.BASE_TRACK_DUCKED, duck_volume);
-	AudioManager.game_music_player.stream.set_sync_stream_volume(LAYERS.BASE_TRACK, noduck_volume);
-	AudioManager.game_music_player.stream.set_sync_stream_volume(LAYERS.KICK_TRACK, kick_volume);
-	AudioManager.game_music_player.stream.set_sync_stream_volume(LAYERS.PERC_TRACK, perc_volume);
-		
-func speed_to_volume(speed, max_speed=30, min_volume=-60, max_volume=0) -> float:
-	return clampf(min_volume + (max_volume - min_volume) * (speed / max_speed), min_volume, max_volume);
+	set_stream_volume(AudioManager.LAYERS.KICK_TRACK, kick_volume);
+	set_stream_volume(AudioManager.LAYERS.PERC_TRACK, perc_volume);
+	
+	# TODO: Should handle the logic for setting the ducking tracks but no time, basing it on paused.
+
+func set_stream_volume(idx, vol) -> void:
+	AudioManager.game_music_player.stream.set_sync_stream_volume(idx, vol);

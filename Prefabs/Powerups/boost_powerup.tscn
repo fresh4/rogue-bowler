@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://crhste1dvjpuf"]
+
+[ext_resource type="Script" path="res://Scripts/Powerups/boost_powerup.gd" id="1_u7vi3"]
+[ext_resource type="ArrayMesh" uid="uid://xgt14t6yhq6p" path="res://Assets/Models/Powerups/boost.obj" id="2_fs4e0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8mjw"]
+albedo_color = Color(0.051, 0.996, 0.973, 1)
+emission_enabled = true
+emission = Color(0.051, 0.996, 0.973, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hgcvt"]
+points = PackedVector3Array(-22.7261, 0, -68.1782, -34.098, 0, -65.135, -22.7261, 10, -68.1782, 22.7261, 0, -68.1782, -42.4089, 0, -56.8196, -34.098, 10, -65.135, 22.7261, 10, -68.1782, 34.0802, 0, -65.135, -45.4521, 0, -45.4566, -42.4089, 10, -56.8196, 34.0802, 10, -65.135, 42.4, 0, -56.8196, -45.4521, 10, -45.4566, -42.4089, 0, -34.0935, 42.4, 10, -56.8196, 45.4521, 0, -45.4566, -42.4089, 10, -34.0935, -34.098, 0, -25.7737, 45.4521, 10, -45.4566, 42.4, 0, -34.0935, -34.098, 10, -25.7737, -22.735, 0, -22.7305, 42.4, 10, -34.0935, 34.0802, 0, -25.7737, -22.735, 10, -22.7305, 22.7261, 0, -22.7305, 34.0802, 10, -25.7737, 22.7261, 10, -22.7305)
+
+[node name="BoostPowerup" type="Node3D" node_paths=PackedStringArray("detection_area", "mesh")]
+transform = Transform3D(-0.249921, -0.00626762, 2.73967e-10, 0, -1.09278e-08, -0.25, 0.00626762, -0.249921, 1.09244e-08, 0, 1.2, 0)
+script = ExtResource("1_u7vi3")
+boost_power = null
+detection_area = NodePath("Area3D")
+mesh = NodePath("Boost")
+selected_color = "CYAN"
+
+[node name="Boost" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, -4.5, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_y8mjw")
+mesh = ExtResource("2_fs4e0")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, -4.5, -0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_hgcvt")

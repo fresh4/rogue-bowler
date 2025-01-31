@@ -93,6 +93,8 @@ func handle_input() -> void:
 		if ball.linear_velocity.y > 0: ball.linear_velocity.y = 0;
 		ball.apply_central_force(Vector3(0, -SLAM_FORCE, 0));
 		ball.linear_velocity.y = clampf(ball.linear_velocity.y, -MAX_SPEED*2, MAX_SPEED*2);
+	#if Input.is_action_just_pressed("boost"):
+		#ball.apply_central_force(forward.cross(Vector3.UP) * 100000);
 
 ## Helper function to reset camera orientation.
 func reset_camera() -> void:
@@ -117,5 +119,6 @@ func set_emission(color: Color) -> void:
 func _on_hit_ground(body: Node3D) -> void:
 	if body is not GridMap: return;
 	if last_frames_velocity.y < -8:
+		AudioManager.play_audio(AudioManager.BALL_IMPACT_PINS);
 		camera._camera_shake(0.1, 0.075);
 		#Globals.freeze_frame(0.4, 0.25);

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://df6lvbpkcceqk"]
+
+[ext_resource type="Script" path="res://Scripts/Powerups/timer_powerup.gd" id="1_gvsag"]
+[ext_resource type="ArrayMesh" uid="uid://urjp52hxujdh" path="res://Assets/Models/Powerups/time.obj" id="2_dopf8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8mjw"]
+albedo_color = Color(0.051, 0.996, 0.973, 1)
+emission_enabled = true
+emission = Color(0.051, 0.996, 0.973, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p4sar"]
+points = PackedVector3Array(35, 10, -35.0024, 33.8009, 10, -25.9446, 35, 0, -35.0024, 33.8009, 10, -44.0603, 33.8009, 0, -25.9446, 30.3064, 10, -17.5012, 33.8009, 0, -44.0603, 30.3064, 10, -52.5037, 30.3064, 0, -17.5012, 24.7426, 10, -10.2565, 30.3064, 0, -52.5037, 17.5, 10, -77.5, 24.7426, 0, -10.2565, 17.5, 10, -4.69582, 17.5, 0, -77.5, -17.5, 10, -77.5, 17.5, 0, -4.69582, 9.05834, 10, -1.19861, -17.5, 0, -77.5, -30.3132, 10, -52.5037, 9.05834, 0, -1.19861, 0, 10, 0, -30.3132, 0, -52.5037, -33.8078, 10, -44.0603, 0, 0, 0, -9.06519, 10, -1.19861, -33.8078, 0, -44.0603, -35, 10, -35.0024, -9.06519, 0, -1.19861, -17.5, 10, -4.69582, -35, 0, -35.0024, -33.8078, 10, -25.9446, -17.5, 0, -4.69582, -24.7494, 10, -10.2565, -33.8078, 0, -25.9446, -30.3132, 10, -17.5012, -24.7494, 0, -10.2565, -30.3132, 0, -17.5012)
+
+[node name="TimerPowerup" type="Node3D" node_paths=PackedStringArray("detection_area", "mesh")]
+transform = Transform3D(0.0983056, 0.229861, -1.00475e-08, 0, -1.09279e-08, -0.25, -0.229861, 0.0983056, -4.29707e-09, 0, 0, 0)
+script = ExtResource("1_gvsag")
+detection_area = NodePath("Area3D")
+mesh = NodePath("Time")
+selected_color = "CYAN"
+
+[node name="Time" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_y8mjw")
+mesh = ExtResource("2_dopf8")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_p4sar")

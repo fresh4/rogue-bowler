@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ckyhnlpra5xhh"
+path="res://.godot/imported/speed.obj-ab4f31b786ce3430df4480fa90d39856.mesh"
+
+[deps]
+
+files=["res://.godot/imported/speed.obj-ab4f31b786ce3430df4480fa90d39856.mesh"]
+
+source_file="res://Assets/Models/Powerups/speed.obj"
+dest_files=["res://.godot/imported/speed.obj-ab4f31b786ce3430df4480fa90d39856.mesh", "res://.godot/imported/speed.obj-ab4f31b786ce3430df4480fa90d39856.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
