@@ -27,6 +27,7 @@ var knocked_pins: Array[Pin] = []; ## All pins that have been knocked over to av
 var combo_pins: Array[Pin] = []; ## All the pins hit within a certain time frame of each other
 var c_timer: Timer = Timer.new(); ## Combo timer to determine the start and end of a throw
 var g_timer: Timer = Timer.new(); ## Game timer to determine final score
+var is_freeze_framed: bool = false;
 
 var ball: RigidBody3D = null;
 var camera: CustomCamera = null;
@@ -75,12 +76,16 @@ func _on_ball_hit_pins(body: Node3D) -> void:
 	#AudioManager.play_audio(AudioManager.BASS_IMPACT);
 	AudioManager.play_audio(AudioManager.IMPACT_TONE);
 	
-	Globals.freeze_frame(0.35, 0.5);
+	if not is_freeze_framed:
+		Globals.freeze_frame(0.35, 0.5);
+		is_freeze_framed = true;
+	
 	camera._camera_shake(0.1, 0.1);
 	
 	# Pin is hit, start a timer. All pins hit within that timeframe count towards
 	# the score of that "throw".
-	if c_timer.is_stopped(): 
+	if c_timer.is_stopped():
+		is_freeze_framed = false;
 		c_timer.start();
 		timer_started.emit(c_timer.wait_time);
 		await c_timer.timeout;
