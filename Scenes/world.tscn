@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bn10afwxhar2c"]
+[gd_scene load_steps=22 format=3 uid="uid://bn10afwxhar2c"]
 
 [ext_resource type="Script" path="res://Scripts/level_manager.gd" id="1_sttxf"]
 [ext_resource type="PackedScene" uid="uid://cu4nerdr6gtdq" path="res://Prefabs/player.tscn" id="2_ho05h"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://dwfq6esp2sof6" path="res://Scenes/pause_menu.tscn" id="10_ychq2"]
 [ext_resource type="Texture2D" uid="uid://di0uduo7j2xgb" path="res://Assets/Textures/vaporwave-cross.png" id="11_0owf3"]
 [ext_resource type="PackedScene" uid="uid://cyxe6tvwib3ib" path="res://Prefabs/Powerups/spawn_token.tscn" id="11_u47pg"]
+[ext_resource type="PackedScene" uid="uid://b0c7ecoip71d5" path="res://Prefabs/Powerups/jump_powerup.tscn" id="11_uft10"]
+[ext_resource type="PackedScene" uid="uid://bpbj2811flmmb" path="res://Prefabs/Powerups/speed_powerup.tscn" id="13_1hr66"]
+[ext_resource type="PackedScene" uid="uid://crhste1dvjpuf" path="res://Prefabs/Powerups/boost_powerup.tscn" id="14_e0qh7"]
+[ext_resource type="PackedScene" uid="uid://df6lvbpkcceqk" path="res://Prefabs/Powerups/timer_powerup.tscn" id="14_qimlw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x6owf"]
 sky_top_color = Color(0.0627451, 0.027451, 0.129412, 1)
@@ -278,7 +282,7 @@ text = "PAUSED"
 transform = Transform3D(0.852834, 0, -0.522183, 0, 1, 0, 0.522183, 0, 0.852834, -10, 0.5, 0)
 
 [node name="SpawnToken2" parent="Powerups" node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
-transform = Transform3D(0.43816, 0, -0.898897, 0, 1, 0, 0.898897, 0, 0.43816, 0, 0.5, 0)
+transform = Transform3D(-0.489761, 0, -0.871857, 0, 1, 0, 0.871857, 0, -0.489761, 0, 0.5, 0)
 pin_spawner = NodePath("../../Pins/PinSpawnArea")
 
 [node name="Pins" type="Node3D" parent="."]
@@ -381,3 +385,244 @@ selected_color = "WHITE"
 [node name="PinSpawnArea25" parent="Pins" instance=ExtResource("10_enx1a")]
 transform = Transform3D(-0.0236994, 0, -0.999719, 0, 1, 0, 0.999719, 0, -0.0236994, 26.5455, -30, -246.237)
 selected_color = "PINK"
+
+[node name="PinSpawnArea26" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -516.731, -10, 89.435)
+selected_color = "PINK"
+fill_on_start = false
+
+[node name="SpeedPowerup" parent="Pins" instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -567.698, -30, 18.5005)
+
+[node name="BoostPowerup" parent="Pins" instance=ExtResource("14_e0qh7")]
+transform = Transform3D(-1.0541e-08, -0.24115, 0.0659268, 0.25, -1.09278e-08, -1.62838e-16, 2.88175e-09, 0.0659267, 0.241151, -314.878, 81.2, 141.886)
+
+[node name="PinSpawnArea27" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -263.937, 100, 36.6692)
+selected_color = "WHITE"
+
+[node name="TimerPowerup" parent="Pins" instance=ExtResource("14_qimlw")]
+transform = Transform3D(-0.222331, 0.114319, -4.99704e-09, 0, -1.09279e-08, -0.25, -0.114319, -0.222331, 9.71841e-09, 15.9514, -9.99999, -191.203)
+
+[node name="TimerPowerup2" parent="Pins" instance=ExtResource("14_qimlw")]
+transform = Transform3D(0.191234, -0.161027, 7.03869e-09, 0, -1.09279e-08, -0.25, 0.161027, 0.191234, -8.3591e-09, 67.4763, -10, -141.917)
+
+[node name="TimerPowerup3" parent="Pins" instance=ExtResource("14_qimlw")]
+transform = Transform3D(-0.249922, -0.0062668, 2.7393e-10, 0, -1.09279e-08, -0.25, 0.0062668, -0.249922, 1.09244e-08, 45.2948, 0, 10.8906)
+
+[node name="TimerPowerup4" parent="Pins" instance=ExtResource("14_qimlw")]
+transform = Transform3D(0.0301615, -0.248174, 1.0848e-08, 0, -1.09279e-08, -0.25, 0.248174, 0.0301615, -1.3184e-09, 76.7299, -7.62939e-06, 56.1756)
+
+[node name="TimerPowerup5" parent="Pins" instance=ExtResource("14_qimlw")]
+transform = Transform3D(0.233395, -0.0895923, 3.9162e-09, 0, -1.09279e-08, -0.25, 0.0895923, 0.233395, -1.0202e-08, 77.3846, -7.62939e-06, 131.124)
+
+[node name="TimerPowerup6" parent="Pins" instance=ExtResource("14_qimlw")]
+transform = Transform3D(0.245024, -0.0496314, 2.16946e-09, 0, -1.09279e-08, -0.25, 0.0496314, 0.245024, -1.07103e-08, 78.4998, 7.62939e-06, 183.67)
+
+[node name="PinSpawnArea28" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.746033, 9.99992, 286.083)
+selected_color = "PINK"
+
+[node name="PinSpawnArea29" parent="Pins" instance=ExtResource("10_enx1a")]
+transform = Transform3D(-0.0676844, 0, 0.997707, 0, 1, 0, -0.997707, 0, -0.0676844, -194.489, 60, 45.1046)
+
+[node name="JumpPowerup" parent="Pins" instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.244575, 0.0517981, -2.26416e-09, 0, -1.09279e-08, -0.25, -0.0517981, -0.244575, 1.06907e-08, -175.092, 28.3642, 43.9193)
+jump_power = 100
+
+[node name="JumpPowerup" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(0.124361, 0.216874, -9.47986e-09, 0, -1.09279e-08, -0.25, -0.216874, 0.124361, -5.43599e-09, -150.722, 20, 119.294)
+jump_power = 100
+
+[node name="SpeedPowerup" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -124.663, 0, 207.738)
+
+[node name="TimerPowerup" parent="." instance=ExtResource("14_qimlw")]
+transform = Transform3D(0.25, 3.6632e-08, -1.60124e-15, 0, -1.09279e-08, -0.25, -3.6632e-08, 0.25, -1.09278e-08, -67.5886, 0, 118.122)
+
+[node name="JumpPowerup2" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.0403824, 0.246717, -1.07843e-08, 0, -1.09279e-08, -0.25, -0.246717, -0.0403824, 1.76517e-09, -295.368, 38.4561, 193.859)
+jump_power = 100
+
+[node name="TimerPowerup2" parent="." instance=ExtResource("14_qimlw")]
+transform = Transform3D(0.242228, 0.0618512, -2.7036e-09, 0, -1.09279e-08, -0.25, -0.0618512, 0.242228, -1.05881e-08, -398.073, 42.691, 179.562)
+
+[node name="SpeedPowerup2" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -428.612, 65.2858, 104.143)
+
+[node name="SpeedPowerup3" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -516.92, -30, 349.082)
+
+[node name="SpeedPowerup4" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -277.844, -30, 350.408)
+
+[node name="SpeedPowerup5" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 24.8289, -30, 342.802)
+
+[node name="SpeedPowerup6" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 109.901, -30.0001, 161.237)
+
+[node name="SpeedPowerup7" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 116.233, -30.0001, -177.395)
+
+[node name="SpeedPowerup8" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -212.918, -30, -232.966)
+
+[node name="SpeedPowerup9" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -447.992, -30, -237.282)
+
+[node name="SpawnToken" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.267361, 0, 0.963597, 0, 1, 0, -0.963597, 0, 0.267361, 17.3838, 0.5, -21.4572)
+
+[node name="SpawnToken2" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.385744, 0, 0.922606, 0, 1, 0, -0.922606, 0, -0.385744, -93.0405, 10.5, -115.613)
+selected_color = "CYAN"
+
+[node name="SpawnToken3" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.243116, 0, 0.969997, 0, 1, 0, -0.969997, 0, -0.243116, -358.658, -29.5, -239.411)
+
+[node name="SpawnToken4" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.423513, 0, 0.90589, 0, 1, 0, -0.90589, 0, 0.423513, 109.122, -29.5, -231.071)
+
+[node name="SpawnToken5" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.672415, 0, -0.740175, 0, 1, 0, 0.740175, 0, 0.672415, -375.557, 80.5, 22.4035)
+
+[node name="SpawnToken6" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.339016, 0, -0.940781, 0, 1, 0, 0.940781, 0, -0.339016, 44.8722, -9.5, -168.007)
+
+[node name="SpawnToken7" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.385744, 0, 0.922606, 0, 1, 0, -0.922606, 0, -0.385744, -112.033, 7.84435, -138.359)
+
+[node name="SpawnToken8" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.968914, 0, -0.247399, 0, 1, 0, 0.247399, 0, 0.968914, -242.287, -9.50002, -199.219)
+
+[node name="SpeedPowerup10" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -239.312, 15.1731, -104.481)
+
+[node name="BoostPowerup" parent="." instance=ExtResource("14_e0qh7")]
+transform = Transform3D(0.245796, 0.0456495, -1.9954e-09, 0, -1.09278e-08, -0.25, -0.0456495, 0.245796, -1.07441e-08, -325.103, -4.22357, -166.271)
+
+[node name="BoostPowerup2" parent="." instance=ExtResource("14_e0qh7")]
+transform = Transform3D(-0.195095, 0.156326, -6.83324e-09, 0, -1.09278e-08, -0.25, -0.156326, -0.195095, 8.52788e-09, -397.496, 81.2, -17.3184)
+
+[node name="PinSpawnArea" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.00970392, 0, -0.999953, 0, 1, 0, 0.999953, 0, 0.00970392, -105.567, 30.3164, 286.942)
+
+[node name="PinSpawnArea2" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(0.777289, 0, 0.629144, 0, 1, 0, -0.629144, 0, 0.777289, -382.766, 50.3201, 284.026)
+selected_color = "PINK"
+
+[node name="SpawnToken9" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.972969, 0, 0.230936, 0, 1, 0, -0.230936, 0, 0.972969, -374.091, 40.7096, 179.371)
+selected_color = "PINK"
+
+[node name="SpawnToken10" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.94227, 0, 0.334853, 0, 1, 0, -0.334853, 0, -0.94227, -374.372, 80.5, 20.6536)
+selected_color = "CYAN"
+
+[node name="SpawnToken11" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.984764, 0, 0.173895, 0, 1, 0, -0.173895, 0, -0.984764, -376.414, 80.5, 20.965)
+selected_color = "PINK"
+
+[node name="JumpPowerup4" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.239468, 0.0717995, -3.13845e-09, 0, -1.09279e-08, -0.25, -0.0717995, -0.239468, 1.04675e-08, -398.653, 80, -19.9491)
+jump_power = 100
+
+[node name="TimerPowerup3" parent="." instance=ExtResource("14_qimlw")]
+transform = Transform3D(0.128021, 0.214734, -9.38631e-09, 0, -1.09279e-08, -0.25, -0.214734, 0.128021, -5.59599e-09, -317.233, 90, 8.22599)
+
+[node name="TimerPowerup4" parent="." instance=ExtResource("14_qimlw")]
+transform = Transform3D(0.182923, -0.170409, 7.44883e-09, 0, -1.09279e-08, -0.25, 0.170409, 0.182923, -7.9958e-09, -235.251, 100, 0.28809)
+
+[node name="SpeedPowerup11" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -119.506, 29.7585, 0.724525)
+
+[node name="SpawnToken12" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(-0.873662, 0, 0.486532, 0, 1, 0, -0.486532, 0, -0.873662, -119.487, 30.2164, 60.8509)
+selected_color = "CYAN"
+
+[node name="BoostPowerup3" parent="." instance=ExtResource("14_e0qh7")]
+transform = Transform3D(9.71791e-09, 0.22232, 0.11434, 0.25, -1.09278e-08, 0, 4.99796e-09, 0.11434, -0.22232, -49.1598, 1.2, 17.0601)
+
+[node name="JumpPowerup5" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.0887306, 0.233724, -1.02164e-08, 0, -1.09279e-08, -0.25, -0.233724, -0.0887306, 3.87853e-09, -53.789, 0, 27.2181)
+
+[node name="JumpPowerup3" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.126275, 0.215766, -9.4314e-09, 0, -1.09279e-08, -0.25, -0.215766, -0.126275, 5.51965e-09, -428.159, -10, -144.158)
+jump_power = 200
+
+[node name="JumpPowerup6" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.088559, -0.233789, 1.02192e-08, 0, -1.09279e-08, -0.25, 0.233789, -0.088559, 3.87104e-09, -504.966, -9.99998, -68.5511)
+jump_power = 200
+
+[node name="JumpPowerup7" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.21426, 0.128813, -5.63058e-09, 0, -1.09279e-08, -0.25, -0.128813, -0.21426, 9.3656e-09, -410.757, 1.52588e-05, -18.2056)
+jump_power = 475
+
+[node name="JumpPowerup8" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.0485463, 0.245241, -1.07198e-08, 0, -1.09279e-08, -0.25, -0.245241, -0.0485463, 2.12202e-09, -444.897, 0, 15.3996)
+jump_power = 475
+
+[node name="SpawnToken13" parent="." node_paths=PackedStringArray("pin_spawner") instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.927369, 0, -0.374148, 0, 1, 0, 0.374148, 0, 0.927369, -500.063, -9.5, -2.53854)
+pin_spawner = NodePath("../Pins/PinSpawnArea26")
+selected_color = "PINK"
+
+[node name="SpawnToken14" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.34664, 0, 0.937998, 0, 1, 0, -0.937998, 0, 0.34664, -500.934, -9.5, -1.6509)
+
+[node name="SpawnToken15" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.483303, 0, 0.875453, 0, 1, 0, -0.875453, 0, 0.483303, -499.265, -9.5, -1.67711)
+selected_color = "CYAN"
+
+[node name="BoostPowerup4" parent="." instance=ExtResource("14_e0qh7")]
+transform = Transform3D(6.43061e-09, 0.147115, -0.202131, 0.25, -1.09278e-08, 0, -8.83542e-09, -0.202131, -0.147116, -526.124, 31.2, 200.495)
+
+[node name="BoostPowerup5" parent="." instance=ExtResource("14_e0qh7")]
+transform = Transform3D(-1.02016e-08, -0.233386, -0.0896144, 0.25, -1.09278e-08, 0, -3.91716e-09, -0.0896142, 0.233387, -188.715, 101.2, 0.223335)
+
+[node name="PinSpawnArea3" parent="." instance=ExtResource("10_enx1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -284.936, 30, 104.014)
+selected_color = "PINK"
+
+[node name="SpeedPowerup12" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -202.794, 30, 284.671)
+
+[node name="SpeedPowerup13" parent="." instance=ExtResource("13_1hr66")]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, -136.316, 30, 286.673)
+
+[node name="JumpPowerup9" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.126117, -0.215858, 9.43545e-09, 0, -1.09279e-08, -0.25, 0.215858, -0.126117, 5.51273e-09, 95.1452, -30, 76.4586)
+jump_power = 50
+
+[node name="JumpPowerup10" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.239415, -0.071975, 3.14612e-09, 0, -1.09279e-08, -0.25, 0.071975, -0.239415, 1.04652e-08, 99.4715, -30, 218.888)
+jump_power = 50
+
+[node name="JumpPowerup11" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(0.131645, -0.212532, 9.29005e-09, 0, -1.09279e-08, -0.25, 0.212532, 0.131645, -5.75438e-09, 104.551, -30, -108.038)
+jump_power = 35
+
+[node name="JumpPowerup12" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.244575, 0.0517981, -2.26416e-09, 0, -1.09279e-08, -0.25, -0.0517981, -0.244575, 1.06907e-08, -75.4901, -30, -224.536)
+jump_power = 30
+
+[node name="JumpPowerup13" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(0.034185, 0.247652, -1.08252e-08, 0, -1.09279e-08, -0.25, -0.247652, 0.034185, -1.49427e-09, -136.353, -30, -224.459)
+jump_power = 30
+
+[node name="JumpPowerup14" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(0.0826693, -0.235936, 1.03131e-08, 0, -1.09279e-08, -0.25, 0.235936, 0.0826693, -3.61359e-09, -352.215, -30, 303.385)
+jump_power = 200
+
+[node name="JumpPowerup15" parent="." instance=ExtResource("11_uft10")]
+transform = Transform3D(-0.244576, -0.051797, 2.26412e-09, 0, -1.09279e-08, -0.25, 0.051797, -0.244576, 1.06907e-08, -179.336, -30, 304.573)
+jump_power = 200
+
+[node name="SpawnToken16" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.893008, 0, -0.450041, 0, 1, 0, 0.450041, 0, 0.893008, -11.7584, 0.500004, 0.661436)
+selected_color = "PINK"
+
+[node name="SpawnToken17" parent="." instance=ExtResource("11_u47pg")]
+transform = Transform3D(0.997798, 0, 0.0663238, 0, 1, 0, -0.0663238, 0, 0.997798, -11.6869, 0.500004, -1.27149)
+selected_color = "CYAN"
