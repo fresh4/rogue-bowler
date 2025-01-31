@@ -78,9 +78,9 @@ func pause() -> void:
 	visible = true;
 	
 	# TODO: Bandaid, put this elsewhere.
-	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK, 0);
-	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK_DUCKED, -60);
-	
+	AudioManager.fade_track(AudioManager.LAYERS.BASE_TRACK, 0, 1);
+	AudioManager.fade_track(AudioManager.LAYERS.BASE_TRACK_DUCKED, -60, 1);
+
 
 func unpause() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
@@ -90,5 +90,5 @@ func unpause() -> void:
 	visible = false;
 	
 	# TODO: Bandaid, put this elsewhere.
-	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK, -60);
-	AudioManager.game_music_player.stream.set_sync_stream_volume(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0);
+	AudioManager.fade_track(AudioManager.LAYERS.BASE_TRACK, -60, 1);
+	AudioManager.fade_track(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0, 1);

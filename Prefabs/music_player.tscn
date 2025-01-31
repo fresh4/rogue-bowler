@@ -10,7 +10,7 @@
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_5fmrf"]
 stream_count = 5
 stream_0/stream = ExtResource("1_b7jgr")
-stream_0/volume = -20.0
+stream_0/volume = -60.0
 stream_1/stream = ExtResource("2_olrv6")
 stream_1/volume = -60.0
 stream_2/stream = ExtResource("3_gjj40")

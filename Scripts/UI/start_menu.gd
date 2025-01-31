@@ -30,8 +30,8 @@ func _on_start_button_pressed() -> void:
 	await tween.finished;
 	
 	# TODO: Bandaid, put this elsewhere.
-	fade_track(AudioManager.LAYERS.MENU_TRACK, -60, 3);
-	fade_track(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0, 4);
+	AudioManager.fade_track(AudioManager.LAYERS.MENU_TRACK, -60, 3);
+	AudioManager.fade_track(AudioManager.LAYERS.BASE_TRACK_DUCKED, 0, 4);
 	
 	visible = false;
 	modulate = Color(1,1,1,1);
@@ -39,12 +39,6 @@ func _on_start_button_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED;
 	pause_menu.queue_free();
 	queue_free();
-
-func fade_track(idx, vol, t) -> void:
-	var cur_vol = AudioManager.game_music_player.stream.get_sync_stream_volume(idx);
-	var callback = func(value): AudioManager.game_music_player.stream.set_sync_stream_volume(idx, value);
-	var tween = get_tree().create_tween();
-	tween.tween_method(callback, cur_vol, vol, t);
 
 func _on_settings_button_pressed() -> void:
 	pause_menu.visible = !pause_menu.visible;

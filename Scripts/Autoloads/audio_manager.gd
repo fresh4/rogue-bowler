@@ -105,6 +105,12 @@ func play_random(list: Array[AudioStream], player: AudioStreamPlayer3D = null) -
 	else:
 		play_audio(track);
 
+func fade_track(idx, vol, t) -> void:
+	var cur_vol = game_music_player.stream.get_sync_stream_volume(idx);
+	var callback = func(value): game_music_player.stream.set_sync_stream_volume(idx, value);
+	var tween_2 = get_tree().create_tween();
+	tween_2.tween_method(callback, cur_vol, vol, t);
+
 #func on_scene_changed() -> void:
 	## Automatically handle audio shifting based on the current scene
 	#if tween and tween.is_running():
